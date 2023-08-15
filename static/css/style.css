@@ -1,0 +1,147 @@
+/* General Styles */
+
+body {
+    font-family: Nunito, sans-serif;
+    font-weight: 300;
+    background-color: #151616;
+    color: #ff8200;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.shadow {
+    border-radius: 8px;
+    box-shadow: 4px 4px;
+    margin-top: 20px;
+    background-color: #545454
+}
+
+.title-text {
+    color: #ff8200;
+    background-color: #545454;
+    border-radius: 8px;
+    text-transform: capitalize;
+}
+
+/* Header */
+header {
+    display: flex;
+    background-color: #545454;
+    width: 100%;
+    margin: auto;
+    max-height: 160px;
+}
+
+header ul {
+    padding: 0;
+}
+
+#logo {
+    margin-left: 8px;
+    max-height: 160px;
+}
+
+/* navigation links */
+#menu { 
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+#menu li {
+    display: block;
+    height: 100%;
+    margin: 20px 24px;
+    letter-spacing: 2px;
+    line-height: 16px;
+    font-size: 22px;
+    list-style-type: none;
+}
+
+#menu a {
+    text-decoration: none;
+    color: #ff8200;
+    font-weight: bold;
+}
+
+#menu a:hover {
+    border-bottom: 2px solid #ff8200;
+    color: #f8b219;
+}
+
+.active {
+    border-bottom: 2px solid #ff8200;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    flex-direction: column;
+    background-color: #151616;
+    width: 100%;
+    margin: auto;
+    padding: 0 0 16px;
+}
+
+footer h3 {
+    margin-top: 6%;
+    margin-bottom: 8px;
+}
+
+footer ul {
+    padding: 8px;
+}
+
+.contact-info{
+    color: #ff8200;
+    width: 100%;
+}
+
+.contact-info p {
+    margin: 2px;
+}
+
+.social-media {
+    color: #ff8200;
+    width: 100%;
+    justify-content: center;
+}
+
+.social-media li {
+    padding: 16px;
+    display: inline;
+}
+
+.social-media i {
+    font-size: 220%;
+    text-decoration: none;
+    color: #ff8200;
+}
+
+.social-media i:hover {
+    color: #f8b219; 
+}
+
+/* Website responsiveness */
+@media only screen and (min-width: 650px) {
+    #menu li {
+        display: inline-block;
+        margin: 8px;
+    }
+
+    #menu ul {
+        margin-right: 16px;
+    }
+
+    footer {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+}
