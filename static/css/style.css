@@ -6,6 +6,8 @@ body {
     background-color: #151616;
     color: #ff8200;
     max-width: 1200px;
+    padding: 8px;
+    width: 100%;
     margin: auto;
 }
 
@@ -127,6 +129,66 @@ footer ul {
 .social-media i:hover {
     color: #f8b219; 
 }
+
+/* Home page */
+.content-block {
+    width: 100%;
+    padding: 8px;
+    margin: auto;
+    padding-bottom: 16px;
+    text-align: center;
+}
+
+#hero_outer{
+    position: relative;
+}
+
+#hero-img {
+    width: 92%;
+    margin: 4%;
+    text-align: center;
+    position: relative;
+}
+
+#click-me-text {
+    background-color: #3a4a52ad; 
+    width: 240px;
+    height: 140px;
+    bottom: 16%;
+    right: 10%;
+    position: absolute;    
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+#click-me-text a {
+    color: #ff8200;    
+    font-size: 180%;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+#map {
+    width: 100%;
+}
+
+#location {
+    text-align: center;
+    margin-top: 120px;
+}
+
+ul{
+    padding: 0;
+}
+
+ul li{
+    list-style-type: none;
+}
+
+
 
 /* Website responsiveness */
 @media only screen and (min-width: 650px) {

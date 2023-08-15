@@ -1,7 +1,39 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-    <div class="shadow">
-        <p>This is home page</p>
+<div class='content-block' id="hero_outer">
+    <img src="{% static 'images/hero_image_u.jpg' %}" alt="The Fire Pit resuruant interior" id="hero-img"
+        class="shadow">
+    <div id="click-me-text">
+        <a href="services.html"><u>Book a Table Now!</u></a>
     </div>
+</div>
+
+<div class="row content-block">
+    <div class="col-8">
+        <div id="map">
+            <iframe class='shadow' style="border:0; height: 400px; width: 90%" loading="lazy"
+                src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJyTuPzUUbaEgRmuU4TPQRTeQ&key=AIzaSyAQ7wWjX0xEelBkwOn5RvfRQpPD4U2jaA0"></iframe>
+        </div>
+    </div>
+    <div class="col-4" id="location">
+        <h3>Location</h3>
+        <ul>
+            <li>The Fire Pit</li>
+            <li>Wexford Bridge</li>
+            <li>Wexford</li>
+            <li>Co. Wexford</li>
+        </ul>
+    </div>
+</div>
+<div class="content-block" id="opening-times">
+    <h4>Opening times</h4>
+    <ul>
+        <li>Mon: 00:00 to 23:59</li>
+        <li>Tue: 00:00 to 23:59</li>
+        <li>Placeholder</li>
+        <li>Automate later</li>
+    </ul>
+</div>
 {%endblock%}
