@@ -1,3 +1,5 @@
-from django.shortcuts import render
+from django.views.generic import TemplateView
 
-# Create your views here.
+
+class booking_home_page(TemplateView):
+    template_name = 'booking/booking_home.html'

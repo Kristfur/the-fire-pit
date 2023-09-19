@@ -6,7 +6,12 @@
     <img src="{% static 'images/hero_image_u.jpg' %}" alt="The Fire Pit resuruant interior" id="hero-img"
         class="shadow">
     <div id="click-me-text">
-        <a href="services.html"><u>Book a Table Now!</u></a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'booking_home' %}"><u>Book a Table Now!</u></a>
+        {% else %}
+            <a href="{% url 'account_login' %}"><u>Book a Table Now!</u></a>
+        {% endif %}
+        
     </div>
 </div>
 

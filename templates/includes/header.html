@@ -6,17 +6,27 @@
     <nav id="menu">
         <ul>
             <li>
-                <a href="index.html" class="active">t</a>
+                <a class="active" href="{% url 'home' %}">Home</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'account_logout' %}">Logout</a>
             </li>
             <li>
-                <a href="services.html">e</a>
+                <a href="{% url 'booking_home' %}">My Bookings</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'account_login' %}">Login</a>
             </li>
             <li>
-                <a href="gallery.html">m</a>
+                <a href="{% url 'account_signup' %}">Register</a>
             </li>
             <li>
-                <a href="contact.html">p</a>
+                <a href="{% url 'account_login' %}">My Bookings</a>
             </li>
+            {% endif %}
+
         </ul>
     </nav>
 </header>
