@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'crispy_forms',
     'home',
     'booking',
 ]
@@ -55,8 +56,20 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = 'booking_home'
 LOGOUT_REDIRECT_URL = '/'
+SIGNUP_REDIRECT_URL = 'booking_home'
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+
+
+ACCOUNT_FORMS = {
+    'signup': 'home.forms.CustomSignupForm',
+}
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

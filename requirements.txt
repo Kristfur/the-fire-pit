@@ -7,7 +7,9 @@ dbus-python==1.2.18
 defusedxml==0.7.1
 distro==1.7.0
 Django==4.2.5
+django-active-link==0.1.8
 django-allauth==0.56.1
+django-crispy-forms==2.0
 httplib2==0.20.2
 idna==3.4
 importlib-metadata==4.6.4
