@@ -4,7 +4,7 @@ body {
     font-family: Nunito, sans-serif;
     font-weight: 300;
     background-color: #151616;
-    color: #ff8200;
+    color: #fea601;
     max-width: 1200px;
     padding: 8px;
     width: 100%;
@@ -19,12 +19,12 @@ body {
     border-radius: 8px;
     box-shadow: 4px 4px;
     margin-top: 20px;
-    background-color: #545454
+    background-color: #454545
 }
 
 .title-text {
-    color: #ff8200;
-    background-color: #545454;
+    color: #fea601;
+    background-color: #454545;
     border-radius: 8px;
     text-transform: capitalize;
 }
@@ -32,7 +32,7 @@ body {
 /* Header */
 header {
     display: flex;
-    background-color: #545454;
+    background-color: #454545;
     width: 100%;
     margin: auto;
     max-height: 160px;
@@ -68,17 +68,17 @@ header ul {
 
 #menu a {
     text-decoration: none;
-    color: #ff8200;
+    color: #fea601;
     font-weight: bold;
 }
 
 #menu a:hover {
-    border-bottom: 2px solid #ff8200;
+    border-bottom: 2px solid #fea601;
     color: #f8b219;
 }
 
 .active {
-    border-bottom: 2px solid #ff8200;
+    border-bottom: 2px solid #fea601;
 }
 
 /* Footer */
@@ -101,7 +101,7 @@ footer ul {
 }
 
 .contact-info{
-    color: #ff8200;
+    color: #fea601;
     width: 100%;
 }
 
@@ -110,7 +110,7 @@ footer ul {
 }
 
 .social-media {
-    color: #ff8200;
+    color: #fea601;
     width: 100%;
     justify-content: center;
 }
@@ -123,7 +123,7 @@ footer ul {
 .social-media i {
     font-size: 220%;
     text-decoration: none;
-    color: #ff8200;
+    color: #fea601;
 }
 
 .social-media i:hover {
@@ -163,7 +163,7 @@ footer ul {
 }
 
 #click-me-text a {
-    color: #ff8200;    
+    color: #fea601;    
     font-size: 180%;
     font-weight: bold;
     text-transform: uppercase;
