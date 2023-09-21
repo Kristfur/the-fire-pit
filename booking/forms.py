@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django import forms
-from .models import Booking, AvailableBookings, User
+from .models import Booking, AvailableBookings
 
 
 class BookingForm(forms.ModelForm):
@@ -31,13 +31,14 @@ class BookingForm(forms.ModelForm):
         time = self.cleaned_data['booking_time']
         guests = self.cleaned_data['guest_count']
 
-        tables_booked = 0
+        tables_booked = '0,0,0'
 
         # Get booking object if it exists(to update it), or else pass
-        #try:
-         #   tables_booked = Booking.objects.get(customer=User.pk)
-        #except ObjectDoesNotExist:
-         #   pass
+
+        try:
+            tables_booked = Booking.objects.get(customer=self.instance.customer)
+        except ObjectDoesNotExist:
+            pass
 
         # Get all booking for this time
         bookings_at_same_time = Booking.objects.filter(
@@ -58,7 +59,7 @@ class BookingForm(forms.ModelForm):
                 available_tables[i] -= tables_used[i]
 
         # Add currently booked table to available tables
-        if tables_booked is not 0:
+        if tables_booked is not '0,0,0':
             tables_used = list(map(int, tables_booked.tables_needed.split(",")))
             for i in range(0, len(tables_used)):
                 available_tables[i] += tables_used[i]

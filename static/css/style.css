@@ -130,6 +130,11 @@ footer ul {
     color: #f8b219; 
 }
 
+/* Toasts */
+.toast {
+    autohide: false;
+}
+
 /* Home page */
 .content-block {
     width: 100%;
@@ -211,3 +216,11 @@ ul li{
 .btn {
     background-color: antiquewhite;
 }
+
+table {
+    background-color: antiquewhite;
+}
+
+tbody {
+    border: 4px #000000 solid;
+  }
