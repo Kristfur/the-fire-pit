@@ -10,7 +10,11 @@
             <thead>
                 <tr>
                     <th>Booking Reference</th>
-                    <th>Customer</th>
+                    {% if request.user.is_staff %}
+                        <th>Customer</th>
+                    {% else %}
+                        <th>Booking Name</th>
+                    {% endif %}
                     <th>Date</th>
                     <th>Time Slot</th>
                     <th>No. Guests</th>
@@ -25,7 +29,11 @@
                         {{ booking.pk }}
                     </td>
                     <td>
-                        {{ booking.booking_name }}
+                        {% if request.user.is_staff %}
+                            {{ booking.customer.first_name }} {{ booking.customer.last_name }}
+                        {% else %}
+                            {{ booking.booking_name }}
+                        {% endif %}
                     </td>
                     <td>
                         {{ booking.booking_date }}

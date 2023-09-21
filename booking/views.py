@@ -15,10 +15,15 @@ class booking_home_page(LoginRequiredMixin, ListView):
     template_name = 'booking/booking_home.html'
 
     def get_queryset(self):
-        return Booking.objects.filter(
-            customer=self.request.user,
-            booking_date__gt=(date.today()-timedelta(days=1))
-            )
+        if self.request.user.is_staff:
+            return Booking.objects.filter(
+                booking_date__gt=(date.today()-timedelta(days=1))
+                )
+        else:
+            return Booking.objects.filter(
+                customer=self.request.user,
+                booking_date__gt=(date.today()-timedelta(days=1))
+                )
 
 
 class create_booking(LoginRequiredMixin, CreateView):
