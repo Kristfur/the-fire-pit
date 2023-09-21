@@ -36,10 +36,19 @@
                     <td>
                         {{ booking.guest_count }}
                     </td>
+                    <td>
+                        <a href="{% url 'edit_booking' booking.id %}" class="btn m-2">Edit</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'delete_booking' booking.id %}" class="btn m-2">Cancel</a>
+                    </td>
                 </tr>
             </tbody>
             {% endfor %}
         </table>
+    </div>
+    <div>
+        <a href="{% url 'create_booking' %}" class="btn m-2">Make a Reservation</a>
     </div>
 </div>
 

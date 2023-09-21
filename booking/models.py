@@ -16,7 +16,7 @@ class AvailableBookings(models.Model):
 
 class Booking(models.Model):
     customer = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="booking_customer")
+        User, on_delete=models.CASCADE, related_name="customer")
     booking_name = models.CharField(max_length=25)
     tables_needed = models.CharField(max_length=40)
     guest_count = models.IntegerField(default=2)

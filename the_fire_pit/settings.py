@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'crispy_forms',
+    "crispy_forms",
+    "crispy_bootstrap4",
     'home',
     'booking',
 ]
@@ -69,6 +70,7 @@ ACCOUNT_FORMS = {
     'signup': 'home.forms.CustomSignupForm',
 }
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [

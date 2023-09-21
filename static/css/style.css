@@ -207,3 +207,7 @@ ul li{
         flex-direction: row;
     }
 }
+
+.btn {
+    background-color: antiquewhite;
+}

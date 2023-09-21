@@ -1,21 +1,23 @@
 from datetime import datetime
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django import forms
-from .models import Booking, AvailableBookings
+from .models import Booking, AvailableBookings, User
 
 
 class BookingForm(forms.ModelForm):
     """
     Form to create and edit bookings
-    """
+    """        
+    booking_date = forms.DateField(widget=forms.TextInput(attrs={'type': 'date'}),
+                                       required=True)
     class Meta:
         model = Booking
         fields = [
             'booking_name', 'guest_count', 'booking_date', 'booking_time'
             ]
-        booking_date = forms.DateField(help_text="Choose a date in the future")
+
         labels = {
-            'booking_name': 'Name',
+            'booking_name': 'Booking Name',
             'guest_count': 'Number Of Guests',
             'booking_date': 'Date',
             'booking_time': 'Time',
@@ -29,13 +31,13 @@ class BookingForm(forms.ModelForm):
         time = self.cleaned_data['booking_time']
         guests = self.cleaned_data['guest_count']
 
-        table_booked = None
+        tables_booked = 0
 
         # Get booking object if it exists(to update it), or else pass
-        try:
-            table_booked = Booking.objects.get(id=self.instance.booked_table.id)
-        except ObjectDoesNotExist:
-            pass
+        #try:
+         #   tables_booked = Booking.objects.get(customer=User.pk)
+        #except ObjectDoesNotExist:
+         #   pass
 
         # Get all booking for this time
         bookings_at_same_time = Booking.objects.filter(
@@ -45,7 +47,7 @@ class BookingForm(forms.ModelForm):
         seats_per_table = []
 
         # Get all available tables for this time
-        for available in Available.objects.all():
+        for available in AvailableBookings.objects.all():
             available_tables = list(map(int, available.available_tables.split(",")))
             seats_per_table = list(map(int, available.seats_per_table.split(",")))
 
@@ -56,10 +58,10 @@ class BookingForm(forms.ModelForm):
                 available_tables[i] -= tables_used[i]
 
         # Add currently booked table to available tables
-        if table_booked is not None:
-            tables_used = list(map(int, table_booked.tables_needed.split(",")))
+        if tables_booked is not 0:
+            tables_used = list(map(int, tables_booked.tables_needed.split(",")))
             for i in range(0, len(tables_used)):
-                available_tables[i] -= tables_used[i]
+                available_tables[i] += tables_used[i]
 
         # Throw errors on form
         if date < datetime.today().date():
