@@ -140,13 +140,13 @@ class edit_booking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         seats_per_table = []
 
         # Get all available tables for this time
-        for available in AvailableBookings.objects.all():
-            available_tables.append(available.available_tables_small)
-            seats_per_table.append(available.seats_per_table_small)
-            available_tables.append(available.available_tables_medium)
-            seats_per_table.append(available.seats_per_table_medium)
-            available_tables.append(available.available_tables_large)
-            seats_per_table.append(available.seats_per_table_large)
+        available = AvailableBookings.objects.all()[0]
+        available_tables.append(available.available_tables_small)
+        seats_per_table.append(available.seats_per_table_small)
+        available_tables.append(available.available_tables_medium)
+        seats_per_table.append(available.seats_per_table_medium)
+        available_tables.append(available.available_tables_large)
+        seats_per_table.append(available.seats_per_table_large)
 
         # Remove occupied tables from available tables
         for booking in bookings_at_same_time:
@@ -162,24 +162,29 @@ class edit_booking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         unseated_guests = guests
         tables_needed = [0, 0, 0]
         while True:
+            # Check if everyone is seated
+            if unseated_guests <= 0:
+                break
             # Check large
             if available_tables[2] > 0:
-                if unseated_guests >= seats_per_table[2]:
+                if unseated_guests > seats_per_table[1]:
                     tables_needed[2] += 1
+                    available_tables[2] -= 1
                     unseated_guests -= seats_per_table[2]
                     continue
             # Check medium
             if available_tables[1] > 0:
-                if unseated_guests >= seats_per_table[1]:
+                if unseated_guests > seats_per_table[0]:
                     tables_needed[1] += 1
+                    available_tables[1] -= 1
                     unseated_guests -= seats_per_table[1]
                     continue
             # Check small
             if available_tables[0] > 0:
-                if unseated_guests >= seats_per_table[0]:
-                    tables_needed[0] += 1
-                    unseated_guests -= seats_per_table[0]
-                    break
+                tables_needed[0] += 1
+                available_tables[0] -= 1
+                unseated_guests -= seats_per_table[0]
+                continue
             if available_tables[0] > 0:
                 if unseated_guests < seats_per_table[0]:
                     tables_needed[0] += 1
