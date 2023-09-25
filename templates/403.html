@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex flex-column align-items-center">
+    <h1>403</h1>
+    <h3>Forbidden</h3>
+    <p>You are not authorised to accsess this page!</p>
+
+    <a href="{% url 'home' %}" class="btn button-style">Home</a>
+</div>
+{% endblock %}
