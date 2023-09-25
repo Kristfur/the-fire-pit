@@ -83,6 +83,8 @@ class BookingForm(forms.ModelForm):
             )
         if sum(available_tables) == 0:
             raise ValidationError('Sorry, there are no tables available for this date and time')
+        if guests <= 0:
+            raise ValidationError('Sorry, you must book a table for at least one person')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
