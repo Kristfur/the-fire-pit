@@ -7,13 +7,14 @@ from .models import Booking, AvailableBookings
 class BookingForm(forms.ModelForm):
     """
     Form to create and edit bookings
-    """        
+    """
     booking_date = forms.DateField(widget=forms.TextInput(attrs={'type': 'date'}),
-                                       required=True)
+                                   required=True)
+
     class Meta:
         model = Booking
         fields = [
-            'booking_name', 'guest_count', 'booking_date', 'booking_time'
+            'booking_name', 'guest_count', 'booking_date', 'booking_time',
             ]
 
         labels = {
@@ -31,12 +32,16 @@ class BookingForm(forms.ModelForm):
         time = self.cleaned_data['booking_time']
         guests = self.cleaned_data['guest_count']
 
-        tables_booked = '0,0,0'
+        tables_booked = [0, 0, 0]
+        current_booking = ''
 
         # Get booking object if it exists(to update it), or else pass
 
         try:
-            tables_booked = Booking.objects.get(customer=self.instance.customer)
+            current_booking = Booking.objects.get(id=self.instance.id)
+            tables_booked[0] = current_booking.tables_needed_small
+            tables_booked[1] = current_booking.tables_needed_medium
+            tables_booked[2] = current_booking.tables_needed_large
         except ObjectDoesNotExist:
             pass
 
@@ -46,23 +51,26 @@ class BookingForm(forms.ModelForm):
 
         available_tables = []
         seats_per_table = []
+        tables_used = []
 
         # Get all available tables for this time
         for available in AvailableBookings.objects.all():
-            available_tables = list(map(int, available.available_tables.split(",")))
-            seats_per_table = list(map(int, available.seats_per_table.split(",")))
+            available_tables.append(available.available_tables_small)
+            seats_per_table.append(available.seats_per_table_small)
+            available_tables.append(available.available_tables_medium)
+            seats_per_table.append(available.seats_per_table_medium)
+            available_tables.append(available.available_tables_large)
+            seats_per_table.append(available.seats_per_table_large)
 
         # Remove occupied tables from available tables
         for booking in bookings_at_same_time:
-            tables_used = list(map(int, booking.tables_needed.split(",")))
-            for i in range(0, len(tables_used)):
-                available_tables[i] -= tables_used[i]
+            available_tables[0] -= booking.tables_needed_small
+            available_tables[1] -= booking.tables_needed_medium
+            available_tables[2] -= booking.tables_needed_large
 
         # Add currently booked table to available tables
-        if tables_booked is not '0,0,0':
-            tables_used = list(map(int, tables_booked.tables_needed.split(",")))
-            for i in range(0, len(tables_used)):
-                available_tables[i] += tables_used[i]
+        for i in range(0, 3):
+            available_tables[i] += tables_booked[i]
 
         # Throw errors on form
         if date < datetime.today().date():

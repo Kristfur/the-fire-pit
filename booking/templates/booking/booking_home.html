@@ -4,7 +4,7 @@
 {% block content %}
 <div class='content-block'>
     <div>
-        <h1 class="text-center">My Bookings</h1>
+        <h1 class="text-center">{% if request.user.is_staff %}Bookings{% else %}My Bookings{% endif %}</h1>
         <p>Logged in as {{user.first_name}} {{user.last_name}}</p>
         <table class="table table-striped table-hover">
             <thead>
@@ -12,6 +12,7 @@
                     <th>Booking Reference</th>
                     {% if request.user.is_staff %}
                         <th>Customer</th>
+                        <th>Tables</th>
                     {% else %}
                         <th>Booking Name</th>
                     {% endif %}
@@ -28,13 +29,20 @@
                     <td>
                         {{ booking.pk }}
                     </td>
-                    <td>
-                        {% if request.user.is_staff %}
+                    {% if request.user.is_staff %}
+                        <td>
                             {{ booking.customer.first_name }} {{ booking.customer.last_name }}
-                        {% else %}
+                        </td>
+                        <td class="tables">
+                            <div class="tables_info">Small: {{ booking.tables_needed_small }}</div>
+                            <div class="tables_info">Medium: {{ booking.tables_needed_medium }}</div>
+                            <div class="tables_info">Large: {{ booking.tables_needed_large }}</div>  
+                        </td>
+                    {% else %}
+                        <td>
                             {{ booking.booking_name }}
-                        {% endif %}
-                    </td>
+                        </td>
+                    {% endif %}
                     <td>
                         {{ booking.booking_date }}
                     </td>

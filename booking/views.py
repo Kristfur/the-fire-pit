@@ -53,14 +53,18 @@ class create_booking(LoginRequiredMixin, CreateView):
 
         # Get all available tables for this time
         for available in AvailableBookings.objects.all():
-            available_tables = list(map(int, available.available_tables.split(",")))
-            seats_per_table = list(map(int, available.seats_per_table.split(",")))
+            available_tables.append(available.available_tables_small)
+            seats_per_table.append(available.seats_per_table_small)
+            available_tables.append(available.available_tables_medium)
+            seats_per_table.append(available.seats_per_table_medium)
+            available_tables.append(available.available_tables_large)
+            seats_per_table.append(available.seats_per_table_large)
 
         # Remove occupied tables from available tables
         for booking in bookings_at_same_time:
-            tables_used = list(map(int, booking.tables_needed.split(",")))
-            for i in range(0, len(tables_used)):
-                available_tables[i] -= tables_used[i]
+            available_tables[0] -= booking.tables_needed_small
+            available_tables[1] -= booking.tables_needed_medium
+            available_tables[2] -= booking.tables_needed_large
 
         # Assign tables to booking,    ######(currently unoptomized)######
         unseated_guests = guests
@@ -91,7 +95,9 @@ class create_booking(LoginRequiredMixin, CreateView):
                     break
 
         # Assign tables needed to booking
-        form.instance.tables_needed = ','.join(map(str, tables_needed))
+        form.instance.tables_needed_small = tables_needed[0]
+        form.instance.tables_needed_medium = tables_needed[1]
+        form.instance.tables_needed_large = tables_needed[2]
 
         messages.success(
             self.request,
@@ -108,7 +114,7 @@ class edit_booking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     form_class = BookingForm
     template_name = 'booking/edit_booking.html'
-    success_url = "bookings"
+    success_url = "/"
     model = Booking
 
     def form_valid(self, form):
@@ -120,7 +126,11 @@ class edit_booking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         guests = form.cleaned_data['guest_count']
 
         # Get booking object
-        tables_booked = Booking.objects.get(id=self.get_object().id)   # Add this code into form.py
+        tables_booked = [0, 0, 0]
+        current_booking = Booking.objects.get(id=self.get_object().id)
+        tables_booked[0] = current_booking.tables_needed_small
+        tables_booked[1] = current_booking.tables_needed_medium
+        tables_booked[2] = current_booking.tables_needed_large
 
         # Get all booking for this time
         bookings_at_same_time = Booking.objects.filter(
@@ -131,19 +141,22 @@ class edit_booking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
         # Get all available tables for this time
         for available in AvailableBookings.objects.all():
-            available_tables = list(map(int, available.available_tables.split(",")))
-            seats_per_table = list(map(int, available.seats_per_table.split(",")))
+            available_tables.append(available.available_tables_small)
+            seats_per_table.append(available.seats_per_table_small)
+            available_tables.append(available.available_tables_medium)
+            seats_per_table.append(available.seats_per_table_medium)
+            available_tables.append(available.available_tables_large)
+            seats_per_table.append(available.seats_per_table_large)
 
         # Remove occupied tables from available tables
         for booking in bookings_at_same_time:
-            tables_used = list(map(int, booking.tables_needed.split(",")))
-            for i in range(0, len(tables_used)):
-                available_tables[i] -= tables_used[i]
+            available_tables[0] -= booking.tables_needed_small
+            available_tables[1] -= booking.tables_needed_medium
+            available_tables[2] -= booking.tables_needed_large
 
         # Add currently booked table to available tables
-        tables_used = list(map(int, tables_booked.tables_needed.split(",")))
-        for i in range(0, len(tables_used)):
-            available_tables[i] += tables_used[i]
+        for i in range(0, 3):
+            available_tables[i] += tables_booked[i]
 
         # Assign tables to booking,    ######(currently unoptomized)######
         unseated_guests = guests
@@ -174,8 +187,9 @@ class edit_booking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                     break
 
         # Assign tables needed to booking
-        form.instance.tables_needed = ','.join(map(str, tables_needed))
-
+        form.instance.tables_needed_small = tables_needed[0]
+        form.instance.tables_needed_medium = tables_needed[1]
+        form.instance.tables_needed_large = tables_needed[2]
         messages.success(
             self.request,
             f'Successfully updated booking for {guests} guests on {date}'
@@ -195,11 +209,12 @@ class delete_booking(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     Allows user to delete their bookings
     """
     model = Booking
-    success_url = "bookings"
+    success_url = "/"
+    template_name = 'booking/confirm_delete.html'
 
     def form_valid(self, form):
         """
-        Display toast message on successf delete 
+        Display toast message on successf delete
         """
         messages.success(
             self.request,

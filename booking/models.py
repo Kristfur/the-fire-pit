@@ -6,8 +6,12 @@ TIME_SLOTS = ((1, "2:00pm - 3:45pm"), (2, "4:00pm - 5:45pm"),
 
 
 class AvailableBookings(models.Model):
-    available_tables = models.CharField(max_length=40)  # e.g (4, 2, 2) <- there are 4 tables with 4 seats, 2 with 6 and 2 with 8
-    seats_per_table = models.CharField(max_length=40)   # e.g (4, 6, 8)
+    available_tables_small = models.IntegerField(default=0)
+    seats_per_table_small = models.IntegerField(default=0)
+    available_tables_medium = models.IntegerField(default=0)
+    seats_per_table_medium = models.IntegerField(default=0)
+    available_tables_large = models.IntegerField(default=0)
+    seats_per_table_large = models.IntegerField(default=0)
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.ForeignKey(
         User, default=0, on_delete=models.SET_DEFAULT, related_name="available_bookings"
@@ -18,7 +22,9 @@ class Booking(models.Model):
     customer = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="customer")
     booking_name = models.CharField(max_length=25)
-    tables_needed = models.CharField(max_length=40)
+    tables_needed_small = models.IntegerField(default=0)
+    tables_needed_medium = models.IntegerField(default=0)
+    tables_needed_large = models.IntegerField(default=0)
     guest_count = models.IntegerField(default=2)
     booking_date = models.DateField()
     booking_time = models.IntegerField(choices=TIME_SLOTS, default=1)

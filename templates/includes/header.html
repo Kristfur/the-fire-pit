@@ -13,7 +13,7 @@
                 <a href="{% url 'account_logout' %}">Logout</a>
             </li>
             <li>
-                <a href="{% url 'booking_home' %}">My Bookings</a>
+                <a href="{% url 'booking_home' %}">{% if request.user.is_staff %}Bookings{% else %}My Bookings{% endif %}</a>
             </li>
             {% else %}
             <li>

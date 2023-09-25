@@ -130,11 +130,6 @@ footer ul {
     color: #f8b219; 
 }
 
-/* Toasts */
-.toast {
-    autohide: false;
-}
-
 /* Home page */
 .content-block {
     width: 100%;
@@ -192,6 +187,9 @@ ul{
 ul li{
     list-style-type: none;
 }
+
+
+/* Booking home page */
 
 
 
