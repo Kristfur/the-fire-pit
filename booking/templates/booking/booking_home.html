@@ -3,22 +3,22 @@
 
 {% block content %}
 <div class='content-block'>
-
-    <form method='GET' class="mb-3">
-        <input type='text' name='booking_reference' value='{{ request.GET.booking_reference }}' autocomplete="off" aria-label="Search Booking by reference"
-            placeholder="Search Booking Ref">
-        <button class="btn p-0 search-btn" type='submit' value="Search Booking by ref" aria-label="Click to search by booking ref">
-            <i class="fas fa-search"></i>
-        </button>
-    </form>
-    <form method='GET' class="mb-3">
-        <input type='date' name='date' value='{{ request.GET.date }}' autocomplete="off" aria-label="Search Bookings by date"
-            placeholder="Search Booking Date">
-        <button class="btn p-0 search-btn" type='submit' value="Search Booking by ref" aria-label="Click to search by date">
-            <i class="fas fa-search"></i>
-        </button>
-    </form>
-
+    {% if request.user.is_staff %}
+        <form method='GET' class="mb-3">
+            <input type='text' name='booking_reference' value='{{ request.GET.booking_reference }}' autocomplete="off" aria-label="Search Booking by reference"
+                placeholder="Search Booking Ref">
+            <button class="btn p-0 search-btn" type='submit' value="Search Booking by ref" aria-label="Click to search by booking ref">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        <form method='GET' class="mb-3">
+            <input type='date' name='date' value='{{ request.GET.date }}' autocomplete="off" aria-label="Search Bookings by date"
+                placeholder="Search Booking Date">
+            <button class="btn p-0 search-btn" type='submit' value="Search Booking by ref" aria-label="Click to search by date">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    {% endif %}
     <div>
         <h1 class="text-center">
             {% if request.user.is_staff %}
@@ -87,8 +87,9 @@
                 {% endfor %}
             {% else %}
             <p>There are no bookings here</p>
-            <a href="{% url 'booking_home' %}">Reset</a>
-            <a></a>
+            {% if request.user.is_staff %}
+                <a href="{% url 'booking_home' %}">Reset</a>
+            {% endif %}
             {% endif %}
         </table>
     </div>
