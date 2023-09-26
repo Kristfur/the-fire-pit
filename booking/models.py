@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 TIME_SLOTS = ((1, "2:00pm - 3:45pm"), (2, "4:00pm - 5:45pm"),
               (3, "6:00pm - 7:45pm"), (4, "8:00pm - 9:45pm"))
@@ -12,10 +13,14 @@ class AvailableBookings(models.Model):
     seats_per_table_medium = models.IntegerField(default=0)
     available_tables_large = models.IntegerField(default=0)
     seats_per_table_large = models.IntegerField(default=0)
-    updated_on = models.DateTimeField(auto_now=True)
+    updated_on = models.DateTimeField(default=0)
     updated_by = models.ForeignKey(
         User, default=0, on_delete=models.SET_DEFAULT, related_name="available_bookings"
     )
+
+    def save(self, *args, **kwargs):
+        self.updated_on = datetime.today()
+        super().save(*args, **kwargs)
 
 
 class Booking(models.Model):

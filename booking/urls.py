@@ -17,4 +17,7 @@ urlpatterns = [
     path('my_account',
          views.my_account.as_view(),
          name='my_account'),
+    path('setup_page/<slug:pk>',
+         views.setup_page.as_view(),
+         name='setup_page'),
     ]

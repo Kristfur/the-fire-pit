@@ -2,6 +2,7 @@ from datetime import datetime
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django import forms
 from .models import Booking, AvailableBookings
+from datetime import timedelta, date
 
 
 class BookingForm(forms.ModelForm):
@@ -100,3 +101,85 @@ def total_seats(tables, seats):
     for i in range(0, len(tables)):
         count += tables[i] * seats[i]
     return count
+
+
+class SetupForm(forms.ModelForm):
+    """
+    Form to create and edit bookings
+    """
+
+    class Meta:
+        model = AvailableBookings
+        fields = [
+            'available_tables_small', 'seats_per_table_small', 'available_tables_medium',
+            'seats_per_table_medium', 'available_tables_large', 'seats_per_table_large',
+            ]
+
+        labels = {
+            'available_tables_small': 'Number of small tables',
+            'available_tables_medium': 'Number of medium tables',
+            'available_tables_large': 'Number of large tables',
+            'seats_per_table_small': 'Capacity of small tables',
+            'seats_per_table_medium': 'Capacity of medium tables',
+            'seats_per_table_large': 'Capacity of large tables',
+        }
+
+    def clean(self):
+        """
+        Validate form data and throw errors when needed
+        """
+        sm_count = self.cleaned_data['available_tables_small']
+        md_count = self.cleaned_data['available_tables_medium']
+        lg_count = self.cleaned_data['available_tables_large']
+        sm_cap = self.cleaned_data['seats_per_table_small']
+        md_cap = self.cleaned_data['seats_per_table_medium']
+        lg_cap = self.cleaned_data['seats_per_table_large']
+
+        # Throw errors on form
+
+        # Check if tables used by current bookings is less than new available tables
+        all_bookings = Booking.objects.filter(booking_date__gt=(date.today()-timedelta(days=1)))
+        last_date_and_time = "" + all_bookings[0].booking_date.strftime("%Y-%m-%d") + str(all_bookings[0].booking_time)
+        total_tables_used = [0, 0, 0]
+
+        for booking in all_bookings:
+            # If previous booking is booked for the same time as this one
+            # Add tables to tables used
+
+            if last_date_and_time == "" + booking.booking_date.strftime("%Y-%m-%d") + str(booking.booking_time):
+                total_tables_used[0] += booking.tables_needed_small
+                total_tables_used[1] += booking.tables_needed_medium
+                total_tables_used[2] += booking.tables_needed_large
+            else:
+                last_date_and_time = "" + booking.booking_date.strftime("%Y-%m-%d") + str(booking.booking_time)
+                total_tables_used[0] = booking.tables_needed_small
+                total_tables_used[1] = booking.tables_needed_medium
+                total_tables_used[2] = booking.tables_needed_large
+
+            if total_tables_used[0] > sm_count:
+                raise ValidationError('Sorry, you cannot reduce the number of small tables that low, as '
+                                      + str(total_tables_used[0]) + ' small tables are needed on '
+                                      + booking.booking_date.strftime("%Y-%m-%d") + ' during time slot '
+                                      + str(booking.booking_time))
+            if total_tables_used[1] > md_count:
+                raise ValidationError('Sorry, you cannot reduce the number of medium tables that low, as '
+                                      + str(total_tables_used[1]) + ' medium tables are needed on '
+                                      + booking.booking_date.strftime("%Y-%m-%d") + ' during time slot '
+                                      + str(booking.booking_time))
+            if total_tables_used[2] > lg_count:
+                raise ValidationError('Sorry, you cannot reduce the number of large tables that low, as '
+                                      + str(total_tables_used[2]) + ' large tables are needed on '
+                                      + booking.booking_date.strftime("%Y-%m-%d") + ' during time slot '
+                                      + str(booking.booking_time))
+
+            # Get all bookings, go through each one by date/time group, add total tables used and see if new numbers allow this
+
+        # Check for negative numbers
+        if sm_cap <= 0:
+            raise ValidationError('Sorry, your small tables must have a capacity greater than 0')
+        if sm_count <= 0:
+            raise ValidationError('Sorry, you must have a non 0 number of small tables')
+
+        # Check if large capacity > medium capacity > small capacity
+        if (sm_cap >= md_cap or md_cap >= lg_cap or sm_cap >= lg_cap):
+            raise ValidationError('Sorry, table capacity must scale with size')

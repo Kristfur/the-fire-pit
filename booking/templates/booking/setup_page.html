@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="m-3">
+    <form method="POST" action="{% url 'setup_page' 1 %}" class="form mb-2 p-2 form-style" enctype="multipart/form-data">
+        <h1 class="text-center">Table Setup</h1>
+        <h4>Warning!</h4>
+        <p>It is not recomended to change these values if there are any active bookings</p>
+        <p>Changing the table capacity WILL NOT affect the bookings that are already booked. They will still have the old table capacity</p>
+        {% csrf_token %}
+        {{ form.id }}
+        {{ form|crispy }}
+        {{ form.media }}
+        <button type="submit" class="btn button-style">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+{% endblock %}

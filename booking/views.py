@@ -2,7 +2,7 @@ from datetime import timedelta, date
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DeleteView, CreateView, UpdateView, ListView
 from .models import AvailableBookings, Booking
-from .forms import BookingForm
+from .forms import BookingForm, SetupForm
 from django.contrib import messages
 
 
@@ -249,3 +249,30 @@ class my_account(LoginRequiredMixin, ListView):
     """
     model = Booking
     template_name = 'booking/my_account.html'
+
+
+class setup_page(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """
+    Allows user to create bookings
+    """
+    form_class = SetupForm
+    template_name = 'booking/setup_page.html'
+    success_url = "/"
+    model = AvailableBookings
+
+    def form_valid(self, form):
+
+        form.instance.updated_by = self.request.user
+
+        messages.success(
+            self.request,
+            'Table setup has been changed successfully'
+        )
+
+        return super(setup_page, self).form_valid(form)
+
+    def test_func(self):
+        """ Test user is staff"""
+        if self.request.user.is_staff:
+            return True
+        return False

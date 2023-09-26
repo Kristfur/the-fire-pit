@@ -6,18 +6,19 @@
     {% if request.user.is_staff %}
         <form method='GET' class="mb-3">
             <input type='text' name='booking_reference' value='{{ request.GET.booking_reference }}' autocomplete="off" aria-label="Search Booking by reference"
-                placeholder="Search Booking Ref">
-            <button class="btn p-0 search-btn" type='submit' value="Search Booking by ref" aria-label="Click to search by booking ref">
+                placeholder="Search Booking Reference">
+            <button class="btn p-0 search-btn" type='submit' value="Search Booking by reference" aria-label="Click to search by booking ref">
                 <i class="fas fa-search"></i>
             </button>
         </form>
         <form method='GET' class="mb-3">
             <input type='date' name='date' value='{{ request.GET.date }}' autocomplete="off" aria-label="Search Bookings by date"
                 placeholder="Search Booking Date">
-            <button class="btn p-0 search-btn" type='submit' value="Search Booking by ref" aria-label="Click to search by date">
+            <button class="btn p-0 search-btn" type='submit' value="Search Booking by date" aria-label="Click to search by date">
                 <i class="fas fa-search"></i>
             </button>
         </form>
+        <a href="{% url 'setup_page' 1 %}" class="btn m-2">Table Setup</a>
     {% endif %}
     <div>
         <h1 class="text-center">
