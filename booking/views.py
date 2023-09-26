@@ -16,6 +16,13 @@ class booking_home_page(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         if self.request.user.is_staff:
+            search_booking_ref = self.request.GET.get('booking_reference')
+            search_dates = self.request.GET.get('date')
+            if search_booking_ref:
+                return Booking.objects.filter(id=search_booking_ref)
+            if search_dates:
+                return Booking.objects.filter(booking_date=search_dates)
+
             return Booking.objects.filter(
                 booking_date__gt=(date.today()-timedelta(days=1))
                 )
@@ -219,7 +226,7 @@ class delete_booking(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def form_valid(self, form):
         """
-        Display toast message on successf delete
+        Display toast message on success delete
         """
         messages.success(
             self.request,
