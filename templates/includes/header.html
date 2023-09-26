@@ -15,6 +15,9 @@
             <li>
                 <a href="{% url 'booking_home' %}">{% if request.user.is_staff %}Bookings{% else %}My Bookings{% endif %}</a>
             </li>
+            <li>
+                <a href="{% url 'my_account' %}">My Account</a>
+            </li>
             {% else %}
             <li>
                 <a href="{% url 'account_login' %}">Login</a>

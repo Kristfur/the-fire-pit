@@ -233,3 +233,12 @@ class delete_booking(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         else:
             return self.request.user == self.get_object().customer
+
+
+class my_account(LoginRequiredMixin, ListView):
+    """
+    View to render my bookings page, user can
+    create, read, edit and delete their bookings from this page
+    """
+    model = Booking
+    template_name = 'booking/my_account.html'

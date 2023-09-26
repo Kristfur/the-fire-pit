@@ -14,4 +14,7 @@ urlpatterns = [
     path('delete_booking/<slug:pk>',
          views.delete_booking.as_view(),
          name='delete_booking'),
+    path('my_account',
+         views.my_account.as_view(),
+         name='my_account'),
     ]
