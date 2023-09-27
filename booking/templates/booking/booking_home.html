@@ -3,40 +3,69 @@
 
 {% block content %}
 <div class='content-block'>
+    <!-- Table to view bookings -->
+    <h1 class="text-center">
+        {% if request.user.is_staff %}
+            Bookings 
+                
+        {% else %}
+            My Bookings
+        {% endif %}
+    </h1>
+    <p>Logged in as {{user.first_name}} {{user.last_name}}</p>
     <!-- Staff only options -->
     {% if request.user.is_staff %}
         <!-- Search bookings by booking reference -->
-        <form method='GET' class="mb-3">
-            <input type='text' name='booking_reference' value='{{ request.GET.booking_reference }}' autocomplete="off" aria-label="Search Booking by reference"
-                placeholder="Search Booking Reference">
-            <button class="btn p-0 search-btn" type='submit' value="Search Booking by reference" aria-label="Click to search by booking ref">
-                <i class="fas fa-search"></i>
-            </button>
-        </form>
-        <!-- Search bookings by date -->
-        <form method='GET' class="mb-3">
-            <input type='date' name='date' value='{{ request.GET.date }}' autocomplete="off" aria-label="Search Bookings by date"
-                placeholder="Search Booking Date">
-            <button class="btn p-0 search-btn" type='submit' value="Search Booking by date" aria-label="Click to search by date">
-                <i class="fas fa-search"></i>
-            </button>
-        </form>
-        <!-- Table setup page -->
-        <a href="{% url 'setup_page' 1 %}" class="btn m-2">Table Setup</a>
+        <div class="row">
+            <div class="col-md-2 col-sm-0"></div>
+            <div class="col-md-3 col-sm-12 staff">
+                <form method='GET' class="mb-3">
+                    <input type='text' name='booking_reference' value='{{ request.GET.booking_reference }}' autocomplete="off" aria-label="Search Booking by reference"
+                        placeholder="Search Booking Reference">
+                    <button class="btn p-0 search-btn" type='submit' value="Search Booking by reference" aria-label="Click to search by booking ref">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <!-- Search bookings by date -->
+            <div class="col-md-3 col-sm-12 staff">
+                <form method='GET' class="mb-3">
+                    <input type='date' name='date' value='{{ request.GET.date }}' autocomplete="off" aria-label="Search Bookings by date"
+                        placeholder="Search Booking Date">
+                    <button class="btn p-0 search-btn" type='submit' value="Search Booking by date" aria-label="Click to search by date">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <!-- Table setup page -->        
+            <div class="col-md-3 col-sm-12 staff">
+                <a href="{% url 'setup_page' 1 %}" class="btn m-2">Table Setup</a>
+            </div>
+        </div>
     {% endif %}
     <div>
-        <!-- Table to view bookings -->
-        <h1 class="text-center">
-            {% if request.user.is_staff %}
-            Bookings 
-            
-            {% else %}
-            My Bookings
-            {% endif %}
-        </h1>
-        <p>Logged in as {{user.first_name}} {{user.last_name}}</p>
         {% if object_list|length > 0 %}
-            <table class="table table-striped table-hover">
+            <div class="small-screen">
+                {% for booking in object_list %}
+                <div class="small_screen_block">
+                    <book><strong>Booking Reference: </strong>{{ booking.pk }}</book>
+                    {% if request.user.is_staff %}
+                    <book><strong>Customer:</strong> {{ booking.customer.first_name }} {{ booking.customer.last_name }}</book>
+                    <book><strong>Tables Needed:</strong> Small:{{ booking.tables_needed_small }} -- Medium:{{ booking.tables_needed_medium }} -- Large:{{ booking.tables_needed_large }}</book>
+                    {% else %}
+                    <book><strong>Booking Name :     </strong>{{ booking.booking_name }}</book>
+                    {% endif %}
+                    <book><strong>Date:              </strong>{{ booking.booking_date }}</book>
+                    <book><strong>Time Slot:         </strong>{{ booking.get_booking_time_display }}</book>
+                    <book><strong>Number of Guests:  </strong>{{ booking.guest_count }}</book>
+                    <a href="{% url 'edit_booking' booking.id %}" class="btn m-2 inline">Edit</a>
+                    <a href="{% url 'delete_booking' booking.id %}" class="btn m-2 inline">Cancel</a>
+                    
+
+                </div>
+                {% endfor %}
+            </div>
+            <table class="table table-sm">
                 <thead>
                     <tr>
                         <th>Booking Reference</th>
@@ -48,9 +77,9 @@
                         {% endif %}
                         <th>Date</th>
                         <th>Time Slot</th>
-                        <th>No. Guests</th>
-                        <th><span class="sr-only">Edit Button Column</span></th>
-                        <th><span class="sr-only">Delete Button Column</span></th>
+                        <th class="d-sm-none d-md-table-cell">No. Guests</th>
+                        <th class="d-sm-none d-md-table-cell"><span class="sr-only">Edit Button Column</span></th>
+                        <th class="d-sm-none d-md-table-cell"><span class="sr-only">Delete Button Column</span></th>
                     </tr>
                 </thead>
                 {% for booking in object_list %}
@@ -79,16 +108,24 @@
                         <td>
                             {{ booking.get_booking_time_display }}
                         </td>
-                        <td>
+                        <td class="d-sm-none d-md-table-cell">
                             {{ booking.guest_count }}
                         </td>
-                        <td>
+                        <td class="d-sm-none d-md-table-cell">
                             <a href="{% url 'edit_booking' booking.id %}" class="btn m-2">Edit</a>
                         </td>
-                        <td>
+                        <td class="d-sm-none d-md-table-cell">
                             <a href="{% url 'delete_booking' booking.id %}" class="btn m-2">Cancel</a>
                         </td>
                     </tr>
+                    <td class="d-sm-table-cell d-md-none"></td>
+                    <td class="d-sm-table-cell d-md-none"><strong>Guests:</strong> {{ booking.guest_count }}</td>
+                    <td class="d-sm-table-cell d-md-none">
+                        <a href="{% url 'edit_booking' booking.id %}" class="btn m-2">Edit</a>
+                    </td>
+                    <td class="d-sm-table-cell d-md-none">
+                        <a href="{% url 'delete_booking' booking.id %}" class="btn m-2">Cancel</a>
+                    </td>
                 </tbody>
                 {% endfor %}
             {% else %}
