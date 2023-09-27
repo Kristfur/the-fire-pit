@@ -3,7 +3,9 @@
 
 {% block content %}
 <div class='content-block'>
+    <!-- Staff only options -->
     {% if request.user.is_staff %}
+        <!-- Search bookings by booking reference -->
         <form method='GET' class="mb-3">
             <input type='text' name='booking_reference' value='{{ request.GET.booking_reference }}' autocomplete="off" aria-label="Search Booking by reference"
                 placeholder="Search Booking Reference">
@@ -11,6 +13,7 @@
                 <i class="fas fa-search"></i>
             </button>
         </form>
+        <!-- Search bookings by date -->
         <form method='GET' class="mb-3">
             <input type='date' name='date' value='{{ request.GET.date }}' autocomplete="off" aria-label="Search Bookings by date"
                 placeholder="Search Booking Date">
@@ -18,9 +21,11 @@
                 <i class="fas fa-search"></i>
             </button>
         </form>
+        <!-- Table setup page -->
         <a href="{% url 'setup_page' 1 %}" class="btn m-2">Table Setup</a>
     {% endif %}
     <div>
+        <!-- Table to view bookings -->
         <h1 class="text-center">
             {% if request.user.is_staff %}
             Bookings 
@@ -94,14 +99,10 @@
             {% endif %}
         </table>
     </div>
+    <!-- Make a reservation button -->
     <div>
         <a href="{% url 'create_booking' %}" class="btn m-2">Make a Reservation</a>
     </div>
 </div>
 
-
 {%endblock%}
-{% block extra_js %}
-<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-{% endblock %}

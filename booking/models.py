@@ -15,7 +15,8 @@ class AvailableBookings(models.Model):
     seats_per_table_large = models.IntegerField(default=0)
     updated_on = models.DateTimeField(default=0)
     updated_by = models.ForeignKey(
-        User, default=0, on_delete=models.SET_DEFAULT, related_name="available_bookings"
+        User, default=0, on_delete=models.SET_DEFAULT,
+        related_name="available_bookings"
     )
 
     def save(self, *args, **kwargs):

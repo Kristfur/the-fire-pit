@@ -8,13 +8,14 @@ from django.contrib import messages
 
 class booking_home_page(LoginRequiredMixin, ListView):
     """
-    View to render my bookings page, user can
-    create, read, edit and delete their bookings from this page
+    View to render my bookings page, user can read
+    their bookings from this page
     """
     model = Booking
     template_name = 'booking/booking_home.html'
 
     def get_queryset(self):
+        # Get booking items for viewing
         if self.request.user.is_staff:
             search_booking_ref = self.request.GET.get('booking_reference')
             search_dates = self.request.GET.get('date')
@@ -73,7 +74,7 @@ class create_booking(LoginRequiredMixin, CreateView):
             available_tables[1] -= booking.tables_needed_medium
             available_tables[2] -= booking.tables_needed_large
 
-        # Assign tables to booking,    ######(currently unoptomized)######
+        # Assign tables to booking
         unseated_guests = guests
         tables_needed = [0, 0, 0]
         while True:
@@ -165,7 +166,7 @@ class edit_booking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         for i in range(0, 3):
             available_tables[i] += tables_booked[i]
 
-        # Assign tables to booking,    ######(currently unoptomized)######
+        # Assign tables to booking
         unseated_guests = guests
         tables_needed = [0, 0, 0]
         while True:
@@ -235,7 +236,7 @@ class delete_booking(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return super(delete_booking, self).form_valid(form)
 
     def test_func(self):
-        """ Test user is staff else throw 403 """
+        """ Test if user is staff """
         if self.request.user.is_staff:
             return True
         else:
@@ -272,7 +273,7 @@ class setup_page(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super(setup_page, self).form_valid(form)
 
     def test_func(self):
-        """ Test user is staff"""
+        """ Test if user is staff"""
         if self.request.user.is_staff:
             return True
         return False
