@@ -223,7 +223,8 @@ table {
 }
 
 .small_screen_block {
-    border: 4px #000000 solid;
+    padding: 4px;
+    border: 6px #000000 solid;
     background-color:#f0ac47;
     color: #000000;
 }
