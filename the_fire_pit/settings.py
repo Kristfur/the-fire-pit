@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-kristfur-the-fire-pit-2dog4cy8pr.us2.codeanyapp.com, the-fire-pit-65d9c073f7cf.herokuapp.com, the-fire-pit.herokuapp.com']
 
