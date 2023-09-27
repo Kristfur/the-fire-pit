@@ -9,11 +9,12 @@
         {% csrf_token %}
         <p>Are you sure you want to delete this Booking: {{ object.pk }}?</p>
         <p>Name: {{ object.booking_name }}</p>
-        <p>Seats: {{ object.guest_count }}</p>
+        <p>Guests: {{ object.guest_count }}</p>
         <p>Date: {{ object.booking_date }}</p>
         <p>Time: {{ object.get_booking_time_display }}</p>
 
-        <input type="submit" value="Confirm" class="btn button-style">
+        <input type="submit" value="Confirm" class="btn button-style mb-3">
+        <a class="btn button-style mb-3" href="{% url 'booking_home' %}">Cancel</a>
     </form>
 </div>
 {% endblock %}

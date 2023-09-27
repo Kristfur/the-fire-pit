@@ -11,7 +11,8 @@
         {{ form.id }}
         {{ form|crispy }}
         {{ form.media }}
-        <button type="submit" class="btn button-style">Confirm</button>
+        <button type="submit" class="btn button-style mb-3">Save</button>
+        <a class="btn button-style mb-3" href="{% url 'booking_home' %}">Cancel</a>
     </form>
 </div>
 

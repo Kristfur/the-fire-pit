@@ -29,13 +29,17 @@ body {
     text-transform: capitalize;
 }
 
+#padd {
+    padding: 16px;
+}
+
 /* Header */
 header {
     display: flex;
     background-color: #454545;
     width: 100%;
     margin: auto;
-    max-height: 160px;
+    max-height: 150px;
 }
 
 header ul {
@@ -44,7 +48,7 @@ header ul {
 
 #logo {
     margin-left: 8px;
-    max-height: 160px;
+    max-height: 150px;
 }
 
 /* navigation links */
@@ -57,12 +61,10 @@ header ul {
 }
 
 #menu li {
-    display: block;
-    height: 100%;
-    margin: 20px 24px;
+    margin: 8px;
     letter-spacing: 2px;
     line-height: 16px;
-    font-size: 22px;
+    font-size: 18px;
     list-style-type: none;
 }
 
@@ -74,7 +76,7 @@ header ul {
 
 #menu a:hover {
     border-bottom: 2px solid #fea601;
-    color: #f8b219;
+    color: #f3d23d;
 }
 
 .active {
@@ -127,7 +129,7 @@ footer ul {
 }
 
 .social-media i:hover {
-    color: #f8b219; 
+    color: #f3d23d; 
 }
 
 /* Home page */
@@ -144,10 +146,23 @@ footer ul {
 }
 
 #hero-img {
-    width: 92%;
-    margin: 4%;
+    width: 88%;
+    margin: 6%;
     text-align: center;
     position: relative;
+
+    animation-name: hero-zoom;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hero-zoom { 
+    from{
+        transform: scale(1);
+    }
+    to{
+        transform: scale(1.1);
+    }
 }
 
 #click-me-text {
@@ -171,13 +186,13 @@ footer ul {
     text-decoration: none;
 }
 
-#map {
-    width: 100%;
+#click-me-text a:hover {
+    border-bottom: 2px solid #f3d23d;
+    color: #f3d23d;
 }
 
-#location {
-    text-align: center;
-    margin-top: 120px;
+#map {
+    width: 100%;
 }
 
 ul{
@@ -195,15 +210,6 @@ ul li{
 
 /* Website responsiveness */
 @media only screen and (min-width: 650px) {
-    #menu li {
-        display: inline-block;
-        margin: 8px;
-    }
-
-    #menu ul {
-        margin-right: 16px;
-    }
-
     footer {
         display: flex;
         justify-content: space-between;
