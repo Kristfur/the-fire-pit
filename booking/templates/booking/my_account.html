@@ -5,8 +5,10 @@
 
 <div class="form-style text-center p-3 m-3">
     <h1 class="text-center">My Account</h1>
-    <p>{{ user.first_name }} {{ user.last_name }}</p>
-    <p>{{ user.email }}</p>
-    <p>Created: {{ user.date_joined }}</p>
+    <div class="account">
+        <p>{{ user.first_name }} {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Created: {{ user.date_joined }}</p>
+    </div>
 </div>
 {% endblock %}

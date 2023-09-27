@@ -132,6 +132,15 @@ footer ul {
     color: #f3d23d; 
 }
 
+/* Toast */
+.toast {
+    background-color: antiquewhite;
+    margin: 4px;
+    color:#c47f00;
+    font-size: larger;
+    max-width: fit-content;
+}
+
 /* Home page */
 .content-block {
     width: 100%;
@@ -251,6 +260,14 @@ strong {
 
 .staff {
     padding: 8px;
+}
+
+.account {
+    background-color: antiquewhite;
+    border: 4px #000000 solid;
+    border-radius: 4px;
+    color:#000000;
+    padding: 6px;
 }
 
 
