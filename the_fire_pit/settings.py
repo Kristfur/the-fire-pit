@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-kristfur-the-fire-pit-2dog4cy8pr.us2.codeanyapp.com, the-fire-pit.herokuapp.com']
+ALLOWED_HOSTS = ['8000-kristfur-the-fire-pit-2dog4cy8pr.us2.codeanyapp.com, the-fire-pit-65d9c073f7cf.herokuapp.com']
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-kristfur-the-fire-pit-2dog4cy8pr.us2.codeanyapp.com']
 
