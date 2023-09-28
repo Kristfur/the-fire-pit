@@ -11,10 +11,13 @@ The link to the live Heroku app is [here](https://the-fire-pit-65d9c073f7cf.hero
     * [Agile Planning](#agile-planning)
         * [Milestones](#milestones)
 * [Design](#design)
+    * [Color Scheme](#color-scheme)
     * [Wireframes](#wireframes)
     * [Database Structure](#database-structure)
     * [Security](#security)
 * [Features](#features)
+    * [Site Wide](#site_wide)
+        * [Navbar](#navbar)
     * [Features to Implement](#features-to-implement)
 * [Technologies](#technologies)
 * [Testing](#testing)
@@ -101,9 +104,25 @@ Deploying the app to heroku, and making sure the website works while deployed.
 Writing the README and TESTING documentation.
 
 # Features
+
+## Site Wide
+
+### Navbar
+
+### Footer
+
+### Favicon
+
+### Error pages
+
 ## Features to Implement
 
 # Design
+
+## Color Scheme
+
+The main colors for the site are (#454545) for the background and (#fea601) for the text. These colors were chosen to got with the theme of the resturaunt, a fire pit. 
+
 ## Wireframes
 
 Home page
@@ -142,7 +161,18 @@ Staff setup page
 ![Wireframe for staff setup page large](docs/read_me_images/manager-setup-l.JPG)
 
 ## Database Structure
+
+The database was designed to for users to have full CRUD functionality for their bookings. Every user can only acces their own bookings unless they are staff. 
+
+The user model is connected to the bookings customer field and to the available bookings updated_by field, so that the staff users can see the owner user of the bookings.
+
+When a user is creating a booking, the booking form validation references the available bookings and all other bookings for that time to see if there are seats available.
+
+![Database diagram](docs/read_me_images/database_diagram.JPG)
+
 ## Security
+
+For security when submiting forms, csrf tokens were used. LoginRequiredMixin is used for when a user wants to create, read, update or delets bookings to ensure the user is authenticated. In addition, UserPassesTestMixin is used for when the user wants to update an existing booking to ensure that only the creator of the booking can edit it. The staff users can bypass these tests and change any booking.
 
 # Technologies
 - Codeanywhere
@@ -155,9 +185,7 @@ Staff setup page
     - Used for version control during the development of the game.
 
 - Python
-    - Python was the main language used
-    - Python packages used:
-        - 
+    - Python was the main language used for the backend.
 
 - Heroku
     - The app is hosted on the heroku platform. The live link to the app is [here](https://the-fire-pit-65d9c073f7cf.herokuapp.com).

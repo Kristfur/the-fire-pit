@@ -18,6 +18,6 @@ urlpatterns = [
          views.MyAccount.as_view(),
          name='my_account'),
     path('setup_page/<slug:pk>',
-         views.SetupForm.as_view(),
+         views.SetupPage.as_view(),
          name='setup_page'),
     ]

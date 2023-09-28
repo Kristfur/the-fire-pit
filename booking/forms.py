@@ -185,13 +185,13 @@ class SetupForm(forms.ModelForm):
                                           + str(booking.booking_time))
                 if total_tables_used[2] > lg_count:
                     raise ValidationError('Sorry, you cannot reduce the number'
-                                        + ' of large tables that low, as '
-                                        + str(total_tables_used[2])
-                                        + ' large tables are needed on '
-                                        + booking.booking_date.strftime(
+                                          + ' of large tables that low, as '
+                                          + str(total_tables_used[2])
+                                          + ' large tables are needed on '
+                                          + booking.booking_date.strftime(
                                             "%Y-%m-%d")
-                                        + ' during time slot '
-                                        + str(booking.booking_time))
+                                          + ' during time slot '
+                                          + str(booking.booking_time))
 
         # Check for negative numbers
         if sm_cap <= 0:

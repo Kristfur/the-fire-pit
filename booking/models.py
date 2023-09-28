@@ -27,7 +27,7 @@ class AvailableBookings(models.Model):
 class Booking(models.Model):
     customer = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="customer")
-    booking_name = models.CharField(max_length=25)
+    booking_name = models.CharField(max_length=30)
     tables_needed_small = models.IntegerField(default=0)
     tables_needed_medium = models.IntegerField(default=0)
     tables_needed_large = models.IntegerField(default=0)

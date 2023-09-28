@@ -208,7 +208,8 @@ class EditBooking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         form.instance.tables_needed_large = tables_needed[2]
         messages.success(
             self.request,
-            f'Successfully updated booking for {guests} guests on {date_of_booking}'
+            f'Successfully updated booking for'
+            + ' {guests} guests on {date_of_booking}'
         )
         return super(edit_booking, self).form_valid(form)
 
