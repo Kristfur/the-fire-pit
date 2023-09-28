@@ -143,54 +143,55 @@ class SetupForm(forms.ModelForm):
         # is less than new available tables
         all_bookings = Booking.objects.filter(booking_date__gt=(
                                               date.today()-timedelta(days=1)))
-        last_date_time = all_bookings[0].booking_date.strftime(
-                        "%Y-%m-%d") + str(all_bookings[0].booking_time)
-        total_tables_used = [0, 0, 0]
+        if all_bookings:
+            last_date_time = all_bookings[0].booking_date.strftime(
+                            "%Y-%m-%d") + str(all_bookings[0].booking_time)
+            total_tables_used = [0, 0, 0]
 
-        for booking in all_bookings:
-            # If previous booking is booked for the same time as this one
-            # Add tables to tables used
+            for booking in all_bookings:
+                # If previous booking is booked for the same time as this one
+                # Add tables to tables used
 
-            if last_date_time == booking.booking_date.strftime(
-                                 "%Y-%m-%d") + str(booking.booking_time):
-                total_tables_used[0] += booking.tables_needed_small
-                total_tables_used[1] += booking.tables_needed_medium
-                total_tables_used[2] += booking.tables_needed_large
-            else:
-                last_and_time = booking.booking_date.strftime(
-                                "%Y-%m-%d") + str(booking.booking_time)
-                total_tables_used[0] = booking.tables_needed_small
-                total_tables_used[1] = booking.tables_needed_medium
-                total_tables_used[2] = booking.tables_needed_large
+                if last_date_time == booking.booking_date.strftime(
+                                    "%Y-%m-%d") + str(booking.booking_time):
+                    total_tables_used[0] += booking.tables_needed_small
+                    total_tables_used[1] += booking.tables_needed_medium
+                    total_tables_used[2] += booking.tables_needed_large
+                else:
+                    last_and_time = booking.booking_date.strftime(
+                                    "%Y-%m-%d") + str(booking.booking_time)
+                    total_tables_used[0] = booking.tables_needed_small
+                    total_tables_used[1] = booking.tables_needed_medium
+                    total_tables_used[2] = booking.tables_needed_large
 
-            # Throw errors on form
-            if total_tables_used[0] > sm_count:
-                raise ValidationError('Sorry, you cannot reduce the number'
-                                      + ' of small tables that low, as '
-                                      + str(total_tables_used[0])
-                                      + ' small tables are needed on '
-                                      + booking.booking_date.strftime(
-                                        "%Y-%m-%d")
-                                      + ' during time slot '
-                                      + str(booking.booking_time))
-            if total_tables_used[1] > md_count:
-                raise ValidationError('Sorry, you cannot reduce the number'
-                                      + ' of medium tables that low, as '
-                                      + str(total_tables_used[1])
-                                      + ' medium tables are needed on '
-                                      + booking.booking_date.strftime(
-                                        "%Y-%m-%d")
-                                      + ' during time slot '
-                                      + str(booking.booking_time))
-            if total_tables_used[2] > lg_count:
-                raise ValidationError('Sorry, you cannot reduce the number'
-                                      + ' of large tables that low, as '
-                                      + str(total_tables_used[2])
-                                      + ' large tables are needed on '
-                                      + booking.booking_date.strftime(
-                                        "%Y-%m-%d")
-                                      + ' during time slot '
-                                      + str(booking.booking_time))
+                # Throw errors on form
+                if total_tables_used[0] > sm_count:
+                    raise ValidationError('Sorry, you cannot reduce the number'
+                                          + ' of small tables that low, as '
+                                          + str(total_tables_used[0])
+                                          + ' small tables are needed on '
+                                          + booking.booking_date.strftime(
+                                            "%Y-%m-%d")
+                                          + ' during time slot '
+                                          + str(booking.booking_time))
+                if total_tables_used[1] > md_count:
+                    raise ValidationError('Sorry, you cannot reduce the number'
+                                          + ' of medium tables that low, as '
+                                          + str(total_tables_used[1])
+                                          + ' medium tables are needed on '
+                                          + booking.booking_date.strftime(
+                                            "%Y-%m-%d")
+                                          + ' during time slot '
+                                          + str(booking.booking_time))
+                if total_tables_used[2] > lg_count:
+                    raise ValidationError('Sorry, you cannot reduce the number'
+                                        + ' of large tables that low, as '
+                                        + str(total_tables_used[2])
+                                        + ' large tables are needed on '
+                                        + booking.booking_date.strftime(
+                                            "%Y-%m-%d")
+                                        + ' during time slot '
+                                        + str(booking.booking_time))
 
         # Check for negative numbers
         if sm_cap <= 0:
