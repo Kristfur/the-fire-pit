@@ -136,7 +136,7 @@ footer ul {
 .toast {
     background-color: antiquewhite;
     margin: 4px;
-    color:#c47f00;
+    color:#463008;
     font-size: larger;
     max-width: fit-content;
 }
@@ -176,19 +176,19 @@ footer ul {
 
 #click-me-text {
     background-color: #3a4a52ad; 
-    width: 240px;
-    height: 140px;
+    width: 100px;
+    height: 86px;
     bottom: 16%;
     right: 10%;
     position: absolute;    
-    padding: 16px;
+    padding: 6px;
     border-radius: 8px;
     text-align: center;
 }
 
 #click-me-text a {
     color: #fea601;    
-    font-size: 180%;
+    font-size: 80%;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -293,5 +293,16 @@ strong {
 
     .small-screen {
         display: none;
+    }
+
+    #click-me-text {
+        width: 240px;
+        height: 140px;
+        padding: 16px;
+    }
+
+
+    #click-me-text a {
+        font-size: 180%;
     }
 }

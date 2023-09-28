@@ -2,6 +2,8 @@
 The Fire Pit is a fictional resturaunt based in Wexford, Ireland. This website is a place where customers can make an account and reserve tables at the resturaunt.
 Customers can easily edit and/or cancel their reservations. The resturaunt staff have unique access to view and edit all reservations and they can edit the resturaunts seating capacity.
 
+The link to the live Heroku app is [here](https://the-fire-pit-65d9c073f7cf.herokuapp.com).
+
 # Table of Contents
 * [User Experience](#user-experience)
     * [Site Goals](#site-goals)
@@ -83,15 +85,22 @@ Implementation:
 * The staff can set the capacity and amount of three sizes of tables. They can add tables to the available tables so that they can have more reservations.
 
 ## Agile Planning
+For the development of this website I used a kanban board to aid with keeping me on track. The project board can be found [here](https://github.com/users/Kristfur/projects/2/views/1). Each item had a priority, either "Must Have" or "Should Have". this halped to keep me on track timewise as I could focus on getting the must-haves finishes and I could do the should-haves if time permitted. In addition, each item had a 'story points' value which indicated the amount of work it would take to complete the task. The board consists of 4 sprints, each with about the same number of story points to even out the workload over the sprints.
 
 ### Milestones
 The project had 6 main milestones:
 #### 1: Base Setup
+Without these files, the project would not be possible. This it the first milestone as all the rest of the project depents on this being completed. 
 #### 2: Stand Alone Pages
+Static pages like error pages and the home page are implemented next as it gives the website a structure to build on.
 #### 3: Authentication
+User register, login, and logout functions were then added, along with creating a database for these users. Also, staff useres were created who have unique permissions.
 #### 4: Booking
+The next step was to give the registered users the ability to create, read, update and delete their  bookings, along with giveing the staff unique access to all of these bookings.
 #### 5: Deployment
+Deploying the app to heroku, and making sure the website works while deployed.
 #### 6: Documentation
+Writing the README and TESTING documentation.
 
 # Features
 ## Features to Implement
@@ -106,7 +115,7 @@ The project had 6 main milestones:
     - The game was developed using [Codeanywhere](https://app.codeanywhere.com/).
 
 - GitHub
-    - The source code is hosted on [GitHub](https://github.com/Kristfur/battleships).
+    - The source code is hosted on [GitHub](https://github.com/Kristfur/the-fire-pit).
 
 - Git
     - Used for version control during the development of the game.
@@ -114,11 +123,31 @@ The project had 6 main milestones:
 - Python
     - Python was the main language used
     - Python packages used:
-        - colorama - Used to make colored text in the terminal.
-        - pyfiglet - Used to create the title text.
+        - 
 
 - Heroku
-    - The game is hosted on the heroku platform. The live link to the app is [here](https://battleships-kristfur.herokuapp.com/).
+    - The app is hosted on the heroku platform. The live link to the app is [here](https://the-fire-pit-65d9c073f7cf.herokuapp.com).
+
+- Font Awesome
+    - Icons for the social media in footer were obtained from [https://fontawesome.com/](https://fontawesome.com/)
+
+- Favicon.io
+    - Favicon files were created by [https://favicon.io/](https://favicon.io/)
+
+- balsamiq
+    - Wireframe diagrams were created using [balsamiq](https://balsamiq.com/)
+
+- Google Maps Platform
+    - Interative map on home page
+
+- Django
+    - Project was creted using django
+
+- Bootstrap
+    - Bootstrap was used to style the app
+
+- ElephantSQL
+    - Hosts the database for the app
 
 # Testing
 
@@ -170,4 +199,17 @@ The steps to clone the repository are as follows:
 
 # Credits
 
-Python packages: 
+Python packages:
+
+    - dj-database-url
+    - django
+    - django-allauth
+    - django-crispy-forms
+    - crispy-bootstrap5
+    - gunicorn
+    - psycopg2-binary
+    - whitenoise
+
+Website logo was created by me using [Canva](https://www.canva.com/).
+
+The hero image was taken from [Unsplash](https://unsplash.com/).
