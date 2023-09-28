@@ -128,12 +128,12 @@
                     </td>
                 </tbody>
                 {% endfor %}
-            {% else %}
+        {% else %}
             <p>There are no bookings here</p>
             {% if request.user.is_staff %}
-                <a href="{% url 'booking_home' %}">Reset</a>
+                <a href="{% url 'booking_home' %}" class="btn m-2">Reset Search</a>
             {% endif %}
-            {% endif %}
+        {% endif %}
         </table>
     </div>
     <!-- Make a reservation button -->
