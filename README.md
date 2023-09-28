@@ -18,9 +18,7 @@ The link to the live Heroku app is [here](https://the-fire-pit-65d9c073f7cf.hero
     * [Features to Implement](#features-to-implement)
 * [Technologies](#technologies)
 * [Testing](#testing)
-    * [PEP8 Validation](#pep8-validation)
     * [Unfixed Bugs](#unfixed-bugs)
-    * [Notable (Fixed) Bugs](#notable-fixed-bugs)
 * [Deployment](#deployment)
     * [Version Control](#version-control)
     * [Deployment to Heroku](#deployment-to-heroku)
@@ -107,6 +105,42 @@ Writing the README and TESTING documentation.
 
 # Design
 ## Wireframes
+
+Home page
+
+![Wireframe for home page small](docs/read_me_images/home-s.JPG)
+![Wireframe for home page large](docs/read_me_images/home-l.JPG)
+
+Error page
+
+![Wireframe for error page small](docs/read_me_images/error-s.JPG)
+![Wireframe for error page large](docs/read_me_images/error-l.JPG)
+
+Signup/Login page
+
+![Wireframe for signup small](docs/read_me_images/signup-login-s.JPG)
+![Wireframe for signup large](docs/read_me_images/signup-login-l.JPG)
+
+Booking home page
+
+![Wireframe for booking home small](docs/read_me_images/booking-home-s.JPG)
+![Wireframe for booking home large](docs/read_me_images/booking-home-l.JPG)
+
+Make booking page
+
+![Wireframe for make booking page small](docs/read_me_images/make-booking-s.JPG)
+![Wireframe for make booking page large](docs/read_me_images/make-booking-l.JPG)
+
+Staff view bookings page
+
+![Wireframe for staff view bookings page small](docs/read_me_images/manager-view-booking-s.JPG)
+![Wireframe for staff view bookings page large](docs/read_me_images/manager-view-booking-l.JPG)
+
+Staff setup page
+
+![Wireframe for staff setup page small](docs/read_me_images/manager-setup-s.JPG)
+![Wireframe for staff setup page large](docs/read_me_images/manager-setup-l.JPG)
+
 ## Database Structure
 ## Security
 
@@ -150,14 +184,12 @@ Writing the README and TESTING documentation.
     - Hosts the database for the app
 
 # Testing
+Throughout development there was constant testing to ensure the functions gave the desired outputs and that there were no unpredictable outcomes.
 
-## PEP8 Validation
+A more structured testing procedure was also performed. Details of this report can be found [here](TESTING.md).
 
 ## Unfixed Bugs
-
-## Notable (Fixed) Bugs
-
-
+Currently there are no know bugs, if you happen to come across a bug, please let me know and I will address it in a future release.
 
 # Deployment
 
