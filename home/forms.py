@@ -14,6 +14,9 @@ class CustomSignupForm(SignupForm):
                                     attrs={'placeholder': ('Last Name')}))
 
     def save(self, request):
+        """
+        Save user model, save first and last name to model
+        """
         user = super(CustomSignupForm, self).save(request)
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']

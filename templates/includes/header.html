@@ -1,6 +1,6 @@
 {% load static %}
 <header class="shadow">
-    <a href="{% url 'home' %}">
+    <a id="logo-a" href="{% url 'home' %}">
         <img src="{% static 'images/the_fire_pit_logo.png' %}" alt="The Fire Pit Logo" id="logo">
     </a>
     <nav id="menu" class="navbar navbar-expand-md">
@@ -10,23 +10,23 @@
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
-                <a href="{% url 'account_logout' %}">Logout</a>
-            </li>
-            <li class="nav-item">
                 <a href="{% url 'booking_home' %}">{% if request.user.is_staff %}Bookings{% else %}My Bookings{% endif %}</a>
             </li>
             <li class="nav-item">
                 <a href="{% url 'my_account' %}">My Account</a>
             </li>
-            {% else %}
             <li class="nav-item">
-                <a href="{% url 'account_login' %}">Login</a>
+                <a href="{% url 'account_logout' %}">Logout</a>
             </li>
+            {% else %}
             <li class="nav-item">
                 <a href="{% url 'account_signup' %}">Register</a>
             </li>
             <li class="nav-item">
                 <a href="{% url 'account_login' %}">My Bookings</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'account_login' %}">Login</a>
             </li>
             {% endif %}
 

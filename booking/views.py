@@ -6,7 +6,7 @@ from .forms import BookingForm, SetupForm
 from django.contrib import messages
 
 
-class booking_home_page(LoginRequiredMixin, ListView):
+class BookingHomePage(LoginRequiredMixin, ListView):
     """
     View to render my bookings page, user can read
     their bookings from this page
@@ -15,6 +15,9 @@ class booking_home_page(LoginRequiredMixin, ListView):
     template_name = 'booking/booking_home.html'
 
     def get_queryset(self):
+        """
+        Return the booking objects, filtered accordingly
+        """
         # Get booking items for viewing
         if self.request.user.is_staff:
             search_booking_ref = self.request.GET.get('booking_reference')
@@ -34,7 +37,7 @@ class booking_home_page(LoginRequiredMixin, ListView):
                 )
 
 
-class create_booking(LoginRequiredMixin, CreateView):
+class CreateBooking(LoginRequiredMixin, CreateView):
     """
     Allows user to create bookings
     """
@@ -48,13 +51,13 @@ class create_booking(LoginRequiredMixin, CreateView):
         Assign booking to tables in an efficient manner
         """
         form.instance.customer = self.request.user
-        date = form.cleaned_data['booking_date']
-        time = form.cleaned_data['booking_time']
+        date_of_booking = form.cleaned_data['booking_date']
+        time_of_booking = form.cleaned_data['booking_time']
         guests = form.cleaned_data['guest_count']
 
         # Get all booking for this time
         bookings_at_same_time = Booking.objects.filter(
-            booking_date=date, booking_time=time)
+            booking_date=date_of_booking, booking_time=time_of_booking)
 
         available_tables = []
         seats_per_table = []
@@ -109,13 +112,13 @@ class create_booking(LoginRequiredMixin, CreateView):
 
         messages.success(
             self.request,
-            f'Booking confirmed for {guests} guests on {date}'
+            f'Booking confirmed for {guests} guests on {date_of_booking}'
         )
 
         return super(create_booking, self).form_valid(form)
 
 
-class edit_booking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class EditBooking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
     User can edit their existing bookings through this view
     """
@@ -129,8 +132,8 @@ class edit_booking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         """
         Assign booking to tables in an efficient manner
         """
-        date = form.cleaned_data['booking_date']
-        time = form.cleaned_data['booking_time']
+        date_of_booking = form.cleaned_data['booking_date']
+        time_of_booking = form.cleaned_data['booking_time']
         guests = form.cleaned_data['guest_count']
 
         # Get booking object
@@ -142,7 +145,7 @@ class edit_booking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
         # Get all booking for this time
         bookings_at_same_time = Booking.objects.filter(
-            booking_date=date, booking_time=time)
+            booking_date=date_of_booking, booking_time=time_of_booking)
 
         available_tables = []
         seats_per_table = []
@@ -205,7 +208,7 @@ class edit_booking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         form.instance.tables_needed_large = tables_needed[2]
         messages.success(
             self.request,
-            f'Successfully updated booking for {guests} guests on {date}'
+            f'Successfully updated booking for {guests} guests on {date_of_booking}'
         )
         return super(edit_booking, self).form_valid(form)
 
@@ -217,7 +220,7 @@ class edit_booking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return self.request.user == self.get_object().customer
 
 
-class delete_booking(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class DeleteBooking(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """
     Allows user to delete their bookings
     """
@@ -243,7 +246,7 @@ class delete_booking(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return self.request.user == self.get_object().customer
 
 
-class my_account(LoginRequiredMixin, ListView):
+class MyAccount(LoginRequiredMixin, ListView):
     """
     View to render my bookings page, user can
     create, read, edit and delete their bookings from this page
@@ -252,7 +255,7 @@ class my_account(LoginRequiredMixin, ListView):
     template_name = 'booking/my_account.html'
 
 
-class setup_page(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class SetupPage(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
     Allows user to create bookings
     """
@@ -262,7 +265,9 @@ class setup_page(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = AvailableBookings
 
     def form_valid(self, form):
-
+        """
+        Update available bookings model
+        """
         form.instance.updated_by = self.request.user
 
         messages.success(
@@ -274,6 +279,4 @@ class setup_page(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         """ Test if user is staff"""
-        if self.request.user.is_staff:
-            return True
-        return False
+        return self.request.user.is_staff

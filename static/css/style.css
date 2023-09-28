@@ -39,7 +39,7 @@ header {
     background-color: #454545;
     width: 100%;
     margin: auto;
-    max-height: 150px;
+    max-height: 160px;
 }
 
 header ul {
@@ -48,7 +48,7 @@ header ul {
 
 #logo {
     margin-left: 8px;
-    max-height: 150px;
+    max-height: 120px;
 }
 
 /* navigation links */
@@ -81,6 +81,14 @@ header ul {
 
 .active {
     border-bottom: 2px solid #fea601;
+}
+
+.link {
+    color:#ffffff;
+}
+
+.link:hover {
+    color:#bebebe;
 }
 
 /* Footer */
@@ -299,6 +307,10 @@ strong {
         width: 240px;
         height: 140px;
         padding: 16px;
+    }
+
+    #logo {
+        max-height: 150px;
     }
 
 
