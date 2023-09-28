@@ -1,1 +1,1 @@
-web: gunicorn the-fire-pit.wsgi
+web: gunicorn the_fire_pit.wsgi
