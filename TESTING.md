@@ -14,7 +14,7 @@
 HTML passes the [W3C Validator](https://validator.w3.org/)
 
 With one exception:
-On the register page crispy forms was used for the user creation form. The helptext for the password has a span with a ul inside, inside of a p element. This throws an error on the validator as it claims there is no closing tag for the p nor the span, but there is one of each after the ul element inside the span.
+On the register page crispy forms was used for the user creation form. The helptext for the password has a span with a ul inside, inside of a p element. This throws an error on the validator as it claims there is no closing tag for the p nor the span, but there is one of each after the ul element inside the span. I am not sure why this error is occurring.
 
 ## CSS Validation
 
@@ -142,7 +142,7 @@ When a user edits a booking, the booking is updated in the database correctly.
 
 When a user deletes a booking, the booking is deleted from the database correctly.
 
-When a user tries to edit a booking that does not exsist, a 404 error is displayed.
+When a user tries to edit a booking that does not exist, a 404 error is displayed.
 
 When a user (excluding staff) tries to edit a booking that does not belong to them, a 403 error is displayed.
 

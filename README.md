@@ -1,6 +1,6 @@
 # The Fire Pit
-The Fire Pit is a fictional resturaunt based in Wexford, Ireland. This website is a place where customers can make an account and reserve tables at the resturaunt.
-Customers can easily edit and/or cancel their reservations. The resturaunt staff have unique access to view and edit all reservations and they can edit the resturaunts seating capacity.
+The Fire Pit is a fictional restaurant based in Wexford, Ireland. This website is a place where customers can make an account and reserve tables at the restaurant.
+Customers can easily edit and/or cancel their reservations. The restaurant staff have unique access to view and edit all reservations and they can edit the restaurants seating capacity.
 
 The link to the live Heroku app is [here](https://the-fire-pit-65d9c073f7cf.herokuapp.com).
 
@@ -30,15 +30,16 @@ The link to the live Heroku app is [here](https://the-fire-pit-65d9c073f7cf.hero
 
 # User Experience
 ## Site Goals
-* To provide an easy way for customers to reserve tables at the resturaunt.
-* To provide the staff with all the information reagrding the reservations.
+* To provide an easy way for customers to reserve tables at the restaurant.
+* To provide the staff with all the information regarding the reservations.
+* To provide the staff with the ability to search for specific reservations.
 
 ## User Stories
 * As a user, I want to make a reservation so that I have a table reserved for my group when I go out.
 * As a user, I want to make changes to my reservation so that my reservation stays up-to-date with my plans.
 * As a staff member, I want to see all reservations so that I can get the tables ready for the customers.
-* As a staff memebr, I want to change any reservation, so that all reservations can stay up-to-date.
-* As a staff member, I want to be able to change the capacity of the resturaunt, so that we can do outdoor dining and our reservation capacity reflects that.
+* As a staff member, I want to change any reservation, so that all reservations can stay up-to-date.
+* As a staff member, I want to be able to change the capacity of the restaurant, so that we can do outdoor dining and our reservation capacity reflects that.
 
 User Story:
 > As a user, I want to make a reservation so that I have a table reserved for my group when I go out.
@@ -62,22 +63,22 @@ User Story:
 > As a staff member, I want to see all reservations so that I can get the tables ready for the customers.
 
 Acceptance Criteria:
-* Only the staff memebers can view all reservations.
+* Only the staff members can view all reservations.
 
 Implementation:
-* The staff members have unique permissions wich allows them to view all reservations. The can search each reservation by booking reference and by date so that the resturaunt can run smoothly 
+* The staff members have unique permissions which allows them to view all reservations. The can search each reservation by booking reference and by date so that the restaurant can run smoothly 
 
 User Story:
-> As a staff memebr, I want to change any reservation, so that all reservations can stay up-to-date.
+> As a staff member, I want to change any reservation, so that all reservations can stay up-to-date.
 
 Acceptance Criteria:
-* Only the staff memebers can change all reservations.
+* Only the staff members can change all reservations.
 
 Implementation:
-* The staff members have uninque permissions to be able to edit and/or cancel a booking in case a customer calls by phone wanting to change their booking. This way the staff can change the booking and keep it up to date.
+* The staff members have unique permissions to be able to edit and/or cancel a booking in case a customer calls by phone wanting to change their booking. This way the staff can change the booking and keep it up to date.
 
 User Story:
-> As a staff member, I want to be able to change the capacity of the resturaunt, so that we can do outdoor dining and our reservation capacity reflects that.
+> As a staff member, I want to be able to change the capacity of the restaurant, so that we can do outdoor dining and our reservation capacity reflects that.
 
 Acceptance Criteria:
 * The staff can change the number of available tables for reservations.
@@ -86,20 +87,20 @@ Implementation:
 * The staff can set the capacity and amount of three sizes of tables. They can add tables to the available tables so that they can have more reservations.
 
 ## Agile Planning
-For the development of this website I used a kanban board to aid with keeping me on track. The project board can be found [here](https://github.com/users/Kristfur/projects/2/views/1). Each item had a priority, either "Must Have" or "Should Have". this halped to keep me on track timewise as I could focus on getting the must-haves finishes and I could do the should-haves if time permitted. In addition, each item had a 'story points' value which indicated the amount of work it would take to complete the task. The board consists of 4 sprints, each with about the same number of story points to even out the workload over the sprints.
+For the development of this website I used a kanban board to aid with keeping me on track. The project board can be found [here](https://github.com/users/Kristfur/projects/2/views/1). Each item had a priority, either "Must Have" "Should Have" or "Could Have". This helped to keep me on track timewise as I could focus on getting the must-haves finished and I could do the should-haves if time permitted. In addition, each item had a 'story points' value which indicated the amount of work it would take to complete the task. The board consists of 4 sprints, each with about the same number of story points to even out the workload over the sprints.
 
 ### Milestones
 The project had 6 main milestones:
 #### 1: Base Setup
-Without these files, the project would not be possible. This it the first milestone as all the rest of the project depents on this being completed. 
+Without these files, the project would not be possible. This it the first milestone as all the rest of the project depends on this being completed. 
 #### 2: Stand Alone Pages
 Static pages like error pages and the home page are implemented next as it gives the website a structure to build on.
 #### 3: Authentication
-User register, login, and logout functions were then added, along with creating a database for these users. Also, staff useres were created who have unique permissions.
+User register, login, and logout functions were then added, along with creating a database for these users. Also, staff users were created who have unique permissions.
 #### 4: Booking
-The next step was to give the registered users the ability to create, read, update and delete their  bookings, along with giveing the staff unique access to all of these bookings.
+The next step was to give the registered users the ability to create, read, update and delete their bookings, along with giving the staff unique access to all of these bookings.
 #### 5: Deployment
-Deploying the app to heroku, and making sure the website works while deployed.
+Deploying the app to Heroku, and making sure the website works while deployed.
 #### 6: Documentation
 Writing the README and TESTING documentation.
 
@@ -109,13 +110,13 @@ Writing the README and TESTING documentation.
 
 ### Navbar
 
-A navbar allows for easy navigation throughout the site, the logo and name of the resturaunt are displayed at the top right.
+A navbar allows for easy navigation throughout the site, the logo and name of the restaurant are displayed at the top right.
 
 ![Feature navbar](docs/read_me_images/feature-navbar.JPG)
 
 ### Footer
 
-The footer displays contact info and provided links to the socials for The Fire Pit for the user to easily find us. The contact information have links that open the user's preferrred mailing/calling platform with our email/phone number already dialed for easy contacting.
+The footer displays contact info and provided links to the socials for The Fire Pit for the user to easily find us. The contact information have links that open the user's preferred mailing/calling platform with our email/phone number already dialed for easy contacting.
 
 ![Feature footer](docs/read_me_images/feature-footer.JPG)
 
@@ -127,25 +128,25 @@ The favicon is the recognizable company logo. It Allows the user to easily ident
 
 ### Error pages
 
-The 404, 403 and 500 errors will tell the user that an error has occured and provide a button back to the home page, this helpd the user to not get lost.
+The 404, 403 and 500 errors will tell the user that an error has occurred and provide a button back to the home page, this helps the user to not get lost.
 
 ![Feature error pages](docs/read_me_images/feature-error-pages.JPG)
 
 ## Hero Image
 
-An eye-catching image with a zoom animation on load gets the users attention when the first visit the site. The image contains a call-to-action botton promting them to book a table, which whem click will redirect the user to the bookings page, or the sign in page if not already.
+An eye-catching image with a zoom animation on load gets the users attention when the first visit the site. The image contains a call-to-action bottom prompting them to book a table, which when clicked will redirect the user to the bookings page, or the sign in page if not already.
 
 ![Feature hero image](docs/read_me_images/feature-hero-img.JPG)
 
 ## Interactive Map and Information
 
-A map that shows the exact location of the resturaunt, as well as giving the user the option to explore the surrounding area by panning and zooming the map. This is done using the google maps api. Alongside the map is more information that the user would find helpful.
+A map that shows the exact location of the restaurant, as well as giving the user the option to explore the surrounding area by panning and zooming the map. This is done using the google maps Api. Alongside the map is more information that the user would find helpful.
 
 ![Feature Map and Information](docs/read_me_images/feature-map.JPG)
 
 ## User Authentication
 
-To book a table, first you must create an account. Users can register, sign in and sign out. This allows each user to create and edit bookings that only they and the resturaunt staff can see/edit. the users can also view their account information in the 'My Account' tab in the navbar.
+To book a table, first you must create an account. Users can register, sign in and sign out. This allows each user to create and edit bookings that only they and the restaurant staff can see/edit. the users can also view their account information in the 'My Account' tab in the navbar.
 
 Sign In Page
 
@@ -157,13 +158,13 @@ My Account Tab
 
 ## Bookings
 
-Once registered, a user can create bookings that are then stored in a database. They have full CRUD functionality for these bookings, and only they can change them (and resturaunt staff accounts). This gives the user an easy way to reserve tables at out resturaunt, and to view and change their reservation hastle free.
+Once registered, a user can create bookings that are then stored in a database. They have full CRUD functionality for these bookings, and only they can change them (and restaurant staff accounts). This gives the user an easy way to reserve tables at out restaurant, and to view and change their reservation hassle free.
 
 ![Feature bookings](docs/read_me_images/feature-booking-customer.JPG)
 
 ## Staff Features
 
-Staff are users with unique permissions that allow them to do more than the normal user. Staff are workers at the resturaunt that can view and edit all bookings, as well as edit the 'Available Bookings' model through the table setup page. Staff can change the number of availabe tables for bookings (for seasonal outdoor dining), they can also search bookings by reference number, and search by date to view all booking for a particular day. In each booking item, staff can see the table sizes and amount needed for the booking, so they can set them up accordingly before the guests arrive.
+Staff are users with unique permissions that allow them to do more than the normal user. Staff are workers at the restaurant that can view and edit all bookings, as well as edit the 'Available Bookings' model through the table setup page. Staff can change the number of available tables for bookings (for seasonal outdoor dining), they can also search bookings by reference number, and search by date to view all booking for a particular day. In each booking item, staff can see the table sizes and amount needed for the booking, so they can set them up accordingly before the guests arrive.
 
 Staff booking page on small screens
 
@@ -179,17 +180,17 @@ Staff table setup page
 
 ## Features to Implement
 
-- User email varification, to ensure that every user has a vaild email address.
+- User email verification, to ensure that every user has a valid email address.
 - Ability for users to edit their account information, to change their name or email.
 - The ability for users to create accounts and login with their google account for easily registering as a new user.
-- Optimize the allotment of tables, as currently each table have a set capacity and if a booking calls for 2 tables, the allotment will not take into account combining two tables into one larger table (the total table capacity will decreade by 2 seats where the tables connect).
-- Redistribute tables after a staff member changes the table capacities to reflect the new capacities, and forbid the staff if the new capacity cannot accomidate the current bookings.
+- Optimize the allotment of tables, as currently each table have a set capacity and if a booking calls for 2 tables, the allotment will not take into account combining two tables into one larger table (the total table capacity will decrease by 2 seats where the tables connect).
+- Redistribute tables after a staff member changes the table capacities to reflect the new capacities, and forbid the staff if the new capacity cannot accommodate the current bookings.
 
 # Design
 
 ## Color Scheme
 
-The main colors for the site are (#454545) for the background and (#fea601) for the text. These colors were chosen to got with the theme of the resturaunt, a fire pit. 
+The main colors for the site are (#454545) for the background and (#fea601) for the text. These colors were chosen to go with the theme of the restaurant, a fire pit. 
 
 ## Wireframes
 
@@ -230,7 +231,7 @@ Staff setup page
 
 ## Database Structure
 
-The database was designed to for users to have full CRUD functionality for their bookings. Every user can only acces their own bookings unless they are staff. 
+The database was designed to for users to have full CRUD functionality for their bookings. Every user can only access their own bookings unless they are staff. 
 
 The user model is connected to the bookings customer field and to the available bookings updated_by field, so that the staff users can see the owner user of the bookings.
 
@@ -240,23 +241,23 @@ When a user is creating a booking, the booking form validation references the av
 
 ## Security
 
-For security when submiting forms, csrf tokens were used. LoginRequiredMixin is used for when a user wants to create, read, update or delets bookings to ensure the user is authenticated. In addition, UserPassesTestMixin is used for when the user wants to update an existing booking to ensure that only the creator of the booking can edit it. The staff users can bypass these tests and change any booking.
+For security when submitting forms, csrf tokens were used. LoginRequiredMixin is used for when a user wants to create, read, update or deletes bookings to ensure the user is authenticated. In addition, UserPassesTestMixin is used for when the user wants to update an existing booking to ensure that only the creator of the booking can edit it. The staff users can bypass these tests and change any booking.
 
 # Technologies
 - Codeanywhere
-    - The game was developed using [Codeanywhere](https://app.codeanywhere.com/).
+    - The site was developed using [Codeanywhere](https://app.codeanywhere.com/).
 
 - GitHub
     - The source code is hosted on [GitHub](https://github.com/Kristfur/the-fire-pit).
 
 - Git
-    - Used for version control during the development of the game.
+    - Used for version control during the development of the website.
 
 - Python
     - Python was the main language used for the backend.
 
 - Heroku
-    - The app is hosted on the heroku platform. The live link to the app is [here](https://the-fire-pit-65d9c073f7cf.herokuapp.com).
+    - The app is hosted on the Heroku platform. The live link to the app is [here](https://the-fire-pit-65d9c073f7cf.herokuapp.com).
 
 - Font Awesome
     - Icons for the social media in footer were obtained from [https://fontawesome.com/](https://fontawesome.com/)
@@ -271,7 +272,7 @@ For security when submiting forms, csrf tokens were used. LoginRequiredMixin is 
     - Interative map on home page
 
 - Django
-    - Project was creted using django
+    - Project was created using django
 
 - Bootstrap
     - Bootstrap was used to style the app
@@ -304,13 +305,24 @@ Was used to commit changes to the local repository queue.
 
 Was used to push all committed code to the remote repository on GitHub.
 
+## Set up ElephantSQL database
+The steps for setting up are:
+
+1. Log in to or create your ElephantSQL account
+2. Create new instance
+3. Give it a name
+4. Select the Tiny Turtle plan (free)
+5. Select your region
+6. Create
+7. Copy URL to env.py and/or Heroku config vars
+
 ## Deployment to Heroku
 The steps for deployment are:
 
 1. Log in to or create your Heroku account
 2. Fork or clone this repository
 3. Create a new Heroku app
-4. In the settings, add config vars
+4. In the settings, add config vars (DATABASE_URL, SECRET_KEY)
 5. Link the Heroku app to the repository
 6. Click Deploy
 
