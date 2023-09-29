@@ -115,7 +115,7 @@ class CreateBooking(LoginRequiredMixin, CreateView):
             f'Booking confirmed for {guests} guests on {date_of_booking}'
         )
 
-        return super(create_booking, self).form_valid(form)
+        return super(CreateBooking, self).form_valid(form)
 
 
 class EditBooking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -211,7 +211,7 @@ class EditBooking(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             f'Successfully updated booking for'
             + ' {guests} guests on {date_of_booking}'
         )
-        return super(edit_booking, self).form_valid(form)
+        return super(EditBooking, self).form_valid(form)
 
     def test_func(self):
         """ Test user is staff or throw 403 """
@@ -237,7 +237,7 @@ class DeleteBooking(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             self.request,
             'Successfully deleted booking'
         )
-        return super(delete_booking, self).form_valid(form)
+        return super(DeleteBooking, self).form_valid(form)
 
     def test_func(self):
         """ Test if user is staff """
@@ -276,7 +276,7 @@ class SetupPage(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             'Table setup has been changed successfully'
         )
 
-        return super(setup_page, self).form_valid(form)
+        return super(SetupPage, self).form_valid(form)
 
     def test_func(self):
         """ Test if user is staff"""

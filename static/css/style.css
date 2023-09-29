@@ -237,7 +237,7 @@ table {
     color: #000000;
 }
 
-book {
+.book {
     text-align: left;
     display: block;
     font-size: large;
@@ -278,7 +278,6 @@ strong {
     color:#000000;
     padding: 6px;
 }
-
 
 /* Website responsiveness */
 @media only screen and (min-width: 768px) {
