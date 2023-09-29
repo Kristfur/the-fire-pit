@@ -87,7 +87,7 @@ Implementation:
 * The staff can set the capacity and amount of three sizes of tables. They can add tables to the available tables so that they can have more reservations.
 
 ## Agile Planning
-For the development of this website I used a kanban board to aid with keeping me on track. The project board can be found [here](https://github.com/users/Kristfur/projects/2/views/1). Each item had a priority, either "Must Have" "Should Have" or "Could Have". This helped to keep me on track timewise as I could focus on getting the must-haves finished and I could do the should-haves if time permitted. In addition, each item had a 'story points' value which indicated the amount of work it would take to complete the task. The board consists of 4 sprints, each with about the same number of story points to even out the workload over the sprints.
+For the development of this website I used a kanban board to aid with keeping me on track. The project board can be found [here](https://github.com/users/Kristfur/projects/2/views/1). Each item had a priority, either "Must Have" "Should Have" or "Could Have". I first completed the 'Must Haves' then the 'Should Haves' and the 'Could Haves' if time permitted. This way the core requirements were completed first to give the site a completed feeling and the extra features woubld be completed if time allowed. In addition, each item had a 'story points' value which indicated the amount of work it would take to complete the task. The board consists of 4 sprints, each with about the same number of story points to even out the workload over the sprints.
 
 ### Milestones
 The project had 6 main milestones:
