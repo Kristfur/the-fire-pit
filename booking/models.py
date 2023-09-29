@@ -7,6 +7,10 @@ TIME_SLOTS = ((1, "2:00pm - 3:45pm"), (2, "4:00pm - 5:45pm"),
 
 
 class AvailableBookings(models.Model):
+    """
+    Available bookings is how many tables the resturaunt has.
+    It is used to check the capacity when a user creates a booking
+    """
     available_tables_small = models.IntegerField(default=0)
     seats_per_table_small = models.IntegerField(default=0)
     available_tables_medium = models.IntegerField(default=0)
@@ -25,6 +29,9 @@ class AvailableBookings(models.Model):
 
 
 class Booking(models.Model):
+    """
+    Booking model for each reservation, has an owner who can edit it
+    """
     customer = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="customer")
     booking_name = models.CharField(max_length=30)
