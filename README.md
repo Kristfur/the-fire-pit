@@ -109,13 +109,81 @@ Writing the README and TESTING documentation.
 
 ### Navbar
 
+A navbar allows for easy navigation throughout the site, the logo and name of the resturaunt are displayed at the top right.
+
+![Feature navbar](docs/read_me_images/feature-navbar.JPG)
+
 ### Footer
+
+The footer displays contact info and provided links to the socials for The Fire Pit for the user to easily find us. The contact information have links that open the user's preferrred mailing/calling platform with our email/phone number already dialed for easy contacting.
+
+![Feature footer](docs/read_me_images/feature-footer.JPG)
 
 ### Favicon
 
+The favicon is the recognizable company logo. It Allows the user to easily identify the website from browser tabs.
+
+![Feature favicon](docs/read_me_images/feature-favicon.JPG)
+
 ### Error pages
 
+The 404, 403 and 500 errors will tell the user that an error has occured and provide a button back to the home page, this helpd the user to not get lost.
+
+![Feature error pages](docs/read_me_images/feature-error-pages.JPG)
+
+## Hero Image
+
+An eye-catching image with a zoom animation on load gets the users attention when the first visit the site. The image contains a call-to-action botton promting them to book a table, which whem click will redirect the user to the bookings page, or the sign in page if not already.
+
+![Feature hero image](docs/read_me_images/feature-hero-img.JPG)
+
+## Interactive Map and Information
+
+A map that shows the exact location of the resturaunt, as well as giving the user the option to explore the surrounding area by panning and zooming the map. This is done using the google maps api. Alongside the map is more information that the user would find helpful.
+
+![Feature Map and Information](docs/read_me_images/feature-map.JPG)
+
+## User Authentication
+
+To book a table, first you must create an account. Users can register, sign in and sign out. This allows each user to create and edit bookings that only they and the resturaunt staff can see/edit. the users can also view their account information in the 'My Account' tab in the navbar.
+
+Sign In Page
+
+![Feature sign in](docs/read_me_images/feature-login.JPG)
+
+My Account Tab
+
+![Feature my account page](docs/read_me_images/feature-my-account.JPG)
+
+## Bookings
+
+Once registered, a user can create bookings that are then stored in a database. They have full CRUD functionality for these bookings, and only they can change them (and resturaunt staff accounts). This gives the user an easy way to reserve tables at out resturaunt, and to view and change their reservation hastle free.
+
+![Feature bookings](docs/read_me_images/feature-booking-customer.JPG)
+
+## Staff Features
+
+Staff are users with unique permissions that allow them to do more than the normal user. Staff are workers at the resturaunt that can view and edit all bookings, as well as edit the 'Available Bookings' model through the table setup page. Staff can change the number of availabe tables for bookings (for seasonal outdoor dining), they can also search bookings by reference number, and search by date to view all booking for a particular day. In each booking item, staff can see the table sizes and amount needed for the booking, so they can set them up accordingly before the guests arrive.
+
+Staff booking page on small screens
+
+![Feature staff booking page small screen](docs/read_me_images/feature-booking-staff-sm.JPG)
+
+Staff booking page on large screens
+
+![Feature staff booking page large screen](docs/read_me_images/feature-booking-staff-lg.JPG)
+
+Staff table setup page
+
+![Feature staff booking page](docs/read_me_images/feature-table-setup.JPG)
+
 ## Features to Implement
+
+- User email varification, to ensure that every user has a vaild email address.
+- Ability for users to edit their account information, to change their name or email.
+- The ability for users to create accounts and login with their google account for easily registering as a new user.
+- Optimize the allotment of tables, as currently each table have a set capacity and if a booking calls for 2 tables, the allotment will not take into account combining two tables into one larger table (the total table capacity will decreade by 2 seats where the tables connect).
+- Redistribute tables after a staff member changes the table capacities to reflect the new capacities, and forbid the staff if the new capacity cannot accomidate the current bookings.
 
 # Design
 
